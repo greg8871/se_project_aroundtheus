@@ -30,7 +30,7 @@
   white-space: nowrap;
   overflow: hidden;
 }
-.card__love-button {
+.card__heart-button {
   height: 18px;
   width: 21px;
   margin: 0;
@@ -43,6 +43,6 @@
   background-repeat: no-repeat;
   background-size: 21px 18px;
 }
-.card__love-button:hover {
+.card__heart-button:hover {
   opacity: 0.5;
 }
