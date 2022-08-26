@@ -29,6 +29,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  font-family: "Inter", sans-serif;
 }
 .card__heart-button {
   height: 18px;
