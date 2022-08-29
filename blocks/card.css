@@ -7,7 +7,8 @@
   overflow: hidden;
 }
 .card__image {
-  width: 100%;
+  width: 282px;
+  height: 282px;
   margin: 0;
   padding: 0;
   display: flex;
@@ -38,7 +39,7 @@
   border: none;
   padding: 0;
   flex-shrink: 0;
-  background-color: #ffffff;
+  background-color: transparent;
   background-image: url("../images/heart.svg");
   background-position: center;
   background-repeat: no-repeat;
