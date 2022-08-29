@@ -9,12 +9,12 @@
   color: #545454;
   margin: 0;
 }
-@media screen and (max-width: 470px) {
+@media screen and (min-width: 320px) and (max-width: 760px) {
   .footer {
     padding: 54px 95px 42px;
   }
 }
-@media screen and (max-width: 1280px) {
+@media screen and (min-width: 759px) and (max-width: 1270px) {
   .footer {
     padding: 48px 19px 36px;
   }
