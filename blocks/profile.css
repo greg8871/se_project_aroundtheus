@@ -48,7 +48,7 @@
   opacity: 0.6;
 }
 .profile__description {
-  margin-left: 30px;
+  margin-left: 30
   flex-grow: 1;
   min-width: 0;
   overflow: hidden;
@@ -57,7 +57,7 @@
   background-image: url("../images/Add\ Button.svg");
   background-color: transparent;
   background-repeat: no-repeat;
-  margin-left: auto;
+
   background-position: center;
   padding: 0;
   width: 150px;
@@ -76,6 +76,7 @@
   .profile {
     flex-direction: column;
   }
+  
 
   .profile__name-title {
     font-size: 22px;
@@ -94,21 +95,20 @@
   }
   .profile__add-button {
     margin-top: 36px;
-    width: 100%;
-    background-size: 16px;
   }
-  @media screen and (min-width: 759px) and (max-width: 1270px) {
-    .profile__title {
-      font-size: 28px;
-    }
+}
 
-    .profile__button-edit {
-      width: 20px;
-      height: 20px;
-    }
-    .profile__add-button {
-      min-width: 120px;
-      background-size: 16px;
-    }
+@media screen and (min-width: 759px) and (max-width: 1270px) {
+  .profile__title {
+    font-size: 28px;
+  }
+
+  .profile__button-edit {
+    width: 20px;
+    height: 20px;
+  }
+  .profile__add-button {
+    min-width: 120px;
+    background-size: 16px;
   }
 }
