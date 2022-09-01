@@ -33,6 +33,9 @@
   padding: 0;
   flex-direction: column;
   line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 380px;
 }
 .profile__edit-button {
   height: 24px;
@@ -54,9 +57,10 @@
 }
 .profile__description {
   font-size: 18px;
-  line-height: 22px;
+  line-height: 21.78px;
   grid-area: decription;
   margin: auto;
+  font-weight: 400;
 }
 .profile__add-button {
   background-image: url("../images/Plus.svg");
