@@ -30,11 +30,10 @@
   font-weight: 500;
   font-size: 42px;
   margin: 0;
-  line-height: 48;
+  line-height: 1.1;
   white-space: nowrap;
   padding: 0;
   flex-direction: column;
-  line-height: 1.1;
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 380px;
