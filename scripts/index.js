@@ -81,20 +81,19 @@ profileEditForm.addEventListener("submit", (event) => {
   profileTitleEl.textContent = titleValue;
   profileDescriptionEl.textContent = descriptionValue;
 
-  initialCards.forEach((card) => {
-    const cardTemplate = document
-      .querySelector("#card-template")
-      .content.querySelector(".card");
-    const cardElement = cardTemplate.cloneNode(true);
-
-    const cardImage = cardElement.querySelector(".card__image");
-    const cardTitle = cardElement.querySelector(".card__title");
-
-    cardImage.style.backgroundImage = `url(${card.link})`;
-    cardTitle.textContent = card.name;
-
-    locationCards.append(cardElement);
-  });
-
   closePopup();
+});
+initialCards.forEach((card) => {
+  const cardTemplate = document
+    .querySelector("#card-template")
+    .content.querySelector(".card");
+  const cardElement = cardTemplate.cloneNode(true);
+
+  const cardImage = cardElement.querySelector(".card__image");
+  const cardTitle = cardElement.querySelector(".card__title");
+
+  cardImage.style.backgroundImage = `url(${card.link})`;
+  cardTitle.textContent = card.name;
+
+  locationCards.append(cardElement);
 });
