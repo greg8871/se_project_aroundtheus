@@ -13,6 +13,7 @@
   padding: 0;
   display: flex;
   border-radius: 10px 10px 0px 0px;
+  display: flex;
 }
 .card__footer {
   display: flex;

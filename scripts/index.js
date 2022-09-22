@@ -51,9 +51,11 @@ const profileDescriptionEl = document.querySelector(".profile__description");
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
+
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
+const locationCards = document.querySelector(".locations__cards");
 
 function closePopup() {
   profileEditPopup.classList.remove("popup_is-opened");
@@ -78,6 +80,21 @@ profileEditForm.addEventListener("submit", (event) => {
 
   profileTitleEl.textContent = titleValue;
   profileDescriptionEl.textContent = descriptionValue;
+
+  initialCards.forEach((card) => {
+    const cardTemplate = document
+      .querySelector("#card-template")
+      .content.querySelector(".card");
+    const cardElement = cardTemplate.cloneNode(true);
+
+    const cardImage = cardElement.querySelector(".card__image");
+    const cardTitle = cardElement.querySelector(".card__title");
+
+    cardImage.style.backgroundImage = `url(${card.link})`;
+    cardTitle.textContent = card.name;
+
+    locationCards.append(cardElement);
+  });
 
   closePopup();
 });

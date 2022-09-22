@@ -42,74 +42,7 @@
         </section>
 
         <section class="locations">
-          <ul class="locations__cards">
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/yosemite-valley.jpg"
-                alt=" Yosemite Valley"
-              />
-              <div class="card__footer">
-                <h2 class="card__title">Yosemite Valley</h2>
-                <button class="card__heart-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/lake-louise.png"
-                alt="Lake Louise"
-              />
-              <div class="card__footer">
-                <h3 class="card__title">Lake Louise</h3>
-                <button class="card__heart-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/bald-mountains.png"
-                alt="Bald Mountains"
-              />
-              <div class="card__footer">
-                <h3 class="card__title">Bald Mountains</h3>
-                <button class="card__heart-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/latemar.png"
-                alt="Picture of Latemar"
-              />
-              <div class="card__footer">
-                <h3 class="card__title">Latemar</h3>
-                <button class="card__heart-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/vanoise-national-park.png"
-                alt="Vanoise National Park"
-              />
-              <div class="card__footer">
-                <h3 class="card__title">Vanoise National Park</h3>
-                <button class="card__heart-button" type="button"></button>
-              </div>
-            </li>
-            <li class="card">
-              <img
-                class="card__image"
-                src="./images/lago-di-braies.jpg"
-                alt="Lago di Braies"
-              />
-              <div class="card__footer">
-                <h3 class="card__title">Lago di Braies</h3>
-                <button class="card__heart-button" type="button"></button>
-              </div>
-            </li>
-          </ul>
+          <ul class="locations__cards"></ul>
         </section>
       </main>
       <footer class="footer">
@@ -137,5 +70,15 @@
         </div>
       </div>
     </div>
-    <script defer src="./scripts/index.js"></script>
+    <script src="./scripts/index.js" defer></script>
+    <templete id="card-template">
+      <li class="card card">
+        <div class="card__image" style=""></div>
+        <div class="card__footer">
+          <h2 class="card__title"></h2>
+          <button type="button" class="card__heart-button"></button>
+        </div>
+      </li>
+    </templete>
+  </body>
 </html>
