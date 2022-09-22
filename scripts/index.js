@@ -24,7 +24,6 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
-const modal = document.querySelector(".modal");
 
 const editButton = document.querySelector("#openModal");
 
@@ -55,7 +54,7 @@ const profileTitleInput = profileEditForm.querySelector(
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
-const locationCards = document.querySelector(".locations__cards");
+const cardsContainer = document.querySelector(".locations__cards");
 
 function closePopup() {
   profileEditPopup.classList.remove("popup_is-opened");
@@ -84,6 +83,11 @@ profileEditForm.addEventListener("submit", (event) => {
   closePopup();
 });
 initialCards.forEach((card) => {
+  const cardElement = createCard(card);
+
+  cardsContainer.append(cardElement);
+});
+function createCard(card) {
   const cardTemplate = document
     .querySelector("#card-template")
     .content.querySelector(".card");
@@ -95,5 +99,5 @@ initialCards.forEach((card) => {
   cardImage.style.backgroundImage = `url(${card.link})`;
   cardTitle.textContent = card.name;
 
-  locationCards.append(cardElement);
-});
+  return cardElement;
+}
