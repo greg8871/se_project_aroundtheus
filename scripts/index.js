@@ -25,15 +25,9 @@ const initialCards = [
   },
 ];
 
-const editButton = document.querySelector("#openModal");
-
-const closeButton = document.querySelector("#closeModal");
-
 const nameInput = document.querySelector("#nameInput");
 
 const jobInput = document.querySelector("#descriptionInput");
-
-const profileFormElement = document.querySelector(".modal__form");
 
 const profileName = document.querySelector(".profile__title");
 
@@ -96,7 +90,8 @@ function createCard(card) {
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
 
-  cardImage.style.backgroundImage = `url(${card.link})`;
+  cardImage.src = card.link;
+  cardImage.alt = card.name;
   cardTitle.textContent = card.name;
 
   return cardElement;

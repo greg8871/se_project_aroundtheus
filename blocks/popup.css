@@ -87,10 +87,19 @@
 @media screen and (max-width: 760px) {
   .popup__content {
     max-width: 282px;
+    padding: 25px 22px;
   }
-  .popup__close-button {
-    position: absolute;
+  .popup__close {
     right: 0;
     transform: scale(-0.6);
+    width: 26px;
+    height: 26px;
+  }
+  .popup__submit-button {
+    font-size: 14px;
+    margin-top: 45px;
+  }
+  .popup__title {
+    font-size: 18px;
   }
 }
