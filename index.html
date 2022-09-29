@@ -39,7 +39,11 @@
             </div>
             <p class="profile__description">Explorer</p>
           </div>
-          <button class="profile__add-button" type="button"></button>
+          <button
+            class="profile__add-button"
+            id="add-button"
+            type="button"
+          ></button>
         </section>
 
         <section class="locations">
@@ -49,7 +53,7 @@
       <footer class="footer">
         <p class="footer__copyright">© 2022 Around The U.S.</p>
       </footer>
-      <div class="popup">
+      <div class="popup" id="edit-popup">
         <div class="popup__content">
           <button class="popup__close" type="button"></button>
           <h3 class="popup__title">Edit-profile</h3>
@@ -64,6 +68,27 @@
               class="popup__input popup__input_type_description"
               name="description"
               placeholder="Description"
+              type="text"
+            />
+            <button class="popup__submit-button" type="submit">Save</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup" id="add-popup">
+        <div class="popup__content">
+          <button class="popup__close" type="button"></button>
+          <h3 class="popup__title">New Place</h3>
+          <form class="popup__form" id="edit-profile-form">
+            <input
+              class="popup__input popup__input_type_name"
+              name="title"
+              placeholder="Title"
+              type="text"
+            />
+            <input
+              class="popup__input popup__input_type_description"
+              name="link"
+              placeholder="Image Link"
               type="text"
             />
             <button class="popup__submit-button" type="submit">Save</button>

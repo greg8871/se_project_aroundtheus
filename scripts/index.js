@@ -26,45 +26,42 @@ const initialCards = [
 ];
 
 const nameInput = document.querySelector("#nameInput");
-
 const jobInput = document.querySelector("#descriptionInput");
-
 const profileName = document.querySelector(".profile__title");
-
 const profileJob = document.querySelector(".profile__description");
-
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileEditPopup = document.querySelector(".popup");
+const profileEditPopup = document.querySelector("#edit-popup");
+
 const profileEditCloseButton = document.querySelector(".popup__close");
 const profileEditForm = document.querySelector("#edit-profile-form");
-
 const profileTitleEl = document.querySelector(".profile__name-title");
 const profileDescriptionEl = document.querySelector(".profile__description");
-
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
-
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
 const cardsContainer = document.querySelector(".locations__cards");
+const cardAddPopup = document.querySelector("#add-popup");
+const cardAddButton = document.querySelector("#add-button");
 
-function closePopup() {
-  profileEditPopup.classList.remove("popup_is-opened");
+function closePopup(popup) {
+  popup.classList.remove("popup_is-opened");
 }
-function openPopup() {
-  profileEditPopup.classList.add("popup_is-opened");
+function openPopup(popup) {
+  popup.classList.add("popup_is-opened");
 }
 
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
 
-  openPopup();
+  openPopup(profileEditPopup);
 });
-
-profileEditCloseButton.addEventListener("click", closePopup);
+cardAddButton.addEventListener("click", () => {
+  openPopup(cardAddPopup);
+});
 
 profileEditForm.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -76,6 +73,7 @@ profileEditForm.addEventListener("submit", (event) => {
 
   closePopup();
 });
+profileEditCloseButton.addEventListener("click", closePopup);
 initialCards.forEach((card) => {
   const cardElement = createCard(card);
 
