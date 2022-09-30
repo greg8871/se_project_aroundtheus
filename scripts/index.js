@@ -37,8 +37,8 @@ const cardAddPopup = document.querySelector("#add-popup");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddCloseBtn = cardAddPopup.querySelector(".popup__close");
 const cardAddForm = document.querySelector("#add-card-form");
-const cardListEl = document.querySelector("locations__cards");
-
+const cardListEl = document.querySelector(".locations__cards");
+const cardTemplate = document.querySelector("#card-template");
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
@@ -55,12 +55,12 @@ function openPopup(popup) {
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
-function getCardview(cardData) {
+function getCardView(cardData) {
   const cardEl = cardTemplate.cloneNode(true);
-  const cardImage = cardEl.querySelector(".card__image");
+  const imageEl = cardEl.querySelector(".card__image");
   const cardTitle = cardEl.querySelector(".card__title");
-  imgageEl.scr = cardData.link;
-  imageWl.alt = cardData.name;
+  imageEl.src = cardData.link;
+  imageEl.alt = cardData.name;
   cardTitle.textContent = cardData.name;
   return cardEl;
 }
