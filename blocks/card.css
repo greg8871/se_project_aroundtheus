@@ -47,6 +47,32 @@
   background-repeat: no-repeat;
   background-size: 21px 18px;
 }
+
+.card__heart-button_active {
+  z-index: 2;
+  background: transparent url(../images/like-active.svg) no-repeat center;
+  border: none;
+  height: 18px;
+  padding: 15px;
+  -webkit-transition: 0.4s ease-in-out;
+  -o-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
 .card__heart-button:hover {
   opacity: 0.5;
+  cursor: pointer;
+}
+.card__delete-button {
+  position: absolute;
+  z-index: 2;
+  padding: 18px 18px 0px 0px;
+  align-self: flex-end;
+  -webkit-transition: 0.4s ease-in-out;
+  -o-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
+
+.card__delete-button:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }

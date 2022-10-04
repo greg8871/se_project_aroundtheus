@@ -31,11 +31,12 @@ const profileEditCloseButton = profileEditPopup.querySelector(".popup__close");
 const profileEditForm = document.querySelector("#edit-profile-form");
 const profileTitleEl = document.querySelector(".profile__name-title");
 const profileDescriptionEl = document.querySelector(".profile__description");
-
+const previewPopup = document.querySelector("#preview__popup");
 const cardsContainer = document.querySelector(".locations__cards");
 const cardAddPopup = document.querySelector("#add-popup");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddCloseBtn = cardAddPopup.querySelector(".popup__close");
+const popupPreviewClose = document.querSelector(".popup_preview_close");
 const cardAddForm = document.querySelector("#add-card-form");
 const cardListEl = document.querySelector(".locations__cards");
 const cardTemplate = document.querySelector("#card-template");
@@ -55,13 +56,20 @@ function openPopup(popup) {
 function renderCard(cardEl, container) {
   container.prepend(cardEl);
 }
+
 function getCardView(cardData) {
-  const cardEl = cardTemplate.cloneNode(true);
+  const cardEl = cardTemplate.content.cloneNode(true);
   const imageEl = cardEl.querySelector(".card__image");
   const cardTitle = cardEl.querySelector(".card__title");
   imageEl.src = cardData.link;
   imageEl.alt = cardData.name;
   cardTitle.textContent = cardData.name;
+  const cardLikeButton = cardEl.querySelector(".card__heart-button");
+  cardLikeButton.addEventListener("click", () => {
+    cardLikeButton.classList.toggle(".card__heart-button_active");
+  });
+  cardImage.addEventListener("click", () => previewPopup);
+
   return cardEl;
 }
 
@@ -79,11 +87,16 @@ profileEditCloseButton.addEventListener("click", () => {
 cardAddButton.addEventListener("click", () => {
   openPopup(cardAddPopup);
 });
+const onImagePreviewp = (cardEl) => {
+  toggleModelWindow(previewPopup);
+};
 
 cardAddCloseBtn.addEventListener("click", () => {
-  openPopup(cardAddPopup);
+  closePopup(cardAddPopup);
 });
-
+popupPreviewClose.addEventListener("click", () =>
+  toggleModelWindow(previewPopup)
+);
 profileEditForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const titleValue = event.target.title.value;
