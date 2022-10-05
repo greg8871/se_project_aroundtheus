@@ -36,7 +36,7 @@ const cardsContainer = document.querySelector(".locations__cards");
 const cardAddPopup = document.querySelector("#add-popup");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddCloseBtn = cardAddPopup.querySelector(".popup__close");
-const popupPreviewClose = document.querSelector(".popup_preview_close");
+
 const cardAddForm = document.querySelector("#add-card-form");
 const cardListEl = document.querySelector(".locations__cards");
 const cardTemplate = document.querySelector("#card-template");
@@ -46,6 +46,11 @@ const profileTitleInput = profileEditForm.querySelector(
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
+const previewCloseBtn = document.querSelector(".popup_preview_close");
+previewCloseBtn.addEventListener("click", funstion () {
+  closePopup(previewPopup);
+})
+
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
 }
@@ -66,9 +71,15 @@ function getCardView(cardData) {
   cardTitle.textContent = cardData.name;
   const cardLikeButton = cardEl.querySelector(".card__heart-button");
   cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle(".card__heart-button_active");
+  cardLikeButton.classList.toggle(".card__heart-button_active");
   });
-  cardImage.addEventListener("click", () => previewPopup);
+ imageEl.addEventLictener("click" , function (){
+  const popupImage = previewPopup.querSelector(".popup__image");
+  const popupTitle = previewPopup.querSelector(".popup__title");
+  popupTitle.src = cardData.link;
+  popupTitle.alt = cardData.name;
+  openPopup(previewPopup);
+ });
 
   return cardEl;
 }
