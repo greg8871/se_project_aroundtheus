@@ -46,10 +46,10 @@ const profileTitleInput = profileEditForm.querySelector(
 const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
-const previewCloseBtn = document.querSelector(".popup_preview_close");
-previewCloseBtn.addEventListener("click", funstion () {
+const previewCloseBtn = previewPopup.querySelector(".popup__close");
+previewCloseBtn.addEventListener("click", () => {
   closePopup(previewPopup);
-})
+});
 
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
@@ -71,15 +71,19 @@ function getCardView(cardData) {
   cardTitle.textContent = cardData.name;
   const cardLikeButton = cardEl.querySelector(".card__heart-button");
   cardLikeButton.addEventListener("click", () => {
-  cardLikeButton.classList.toggle(".card__heart-button_active");
+    cardLikeButton.classList.toggle(".card__heart-button_active");
   });
- imageEl.addEventLictener("click" , function (){
-  const popupImage = previewPopup.querSelector(".popup__image");
-  const popupTitle = previewPopup.querSelector(".popup__title");
-  popupTitle.src = cardData.link;
-  popupTitle.alt = cardData.name;
-  openPopup(previewPopup);
- });
+  imageEl.addEventListener("click", function () {
+    const popupImage = previewPopup.querySelector(".popup__image");
+    const popupTitle = previewPopup.querySelector(".popup__title");
+    popupImage.src = cardData.link;
+    popupTitle.alt = cardData.name;
+    openPopup(previewPopup);
+  });
+  const cardDelete = cardEl.querySelector(".card__trash");
+  cardDelete.addEventListener("click", function () {
+    cardEl.remove();
+  });
 
   return cardEl;
 }
@@ -105,9 +109,7 @@ const onImagePreviewp = (cardEl) => {
 cardAddCloseBtn.addEventListener("click", () => {
   closePopup(cardAddPopup);
 });
-popupPreviewClose.addEventListener("click", () =>
-  toggleModelWindow(previewPopup)
-);
+
 profileEditForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const titleValue = event.target.title.value;

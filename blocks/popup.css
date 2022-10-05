@@ -104,5 +104,10 @@
   }
   .popup__input {
     font-size: 14px;
+
   }
-}
+  .popup__image {
+    width: 240px;
+    height: 299px;
+  }
+

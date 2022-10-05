@@ -6,6 +6,7 @@
   margin: 0;
   overflow: hidden;
   flex-direction: column;
+  position: relative;
 }
 .card__image {
   width: 100%;
@@ -62,17 +63,20 @@
   opacity: 0.5;
   cursor: pointer;
 }
-.card__delete-button {
+.card__trash {
   position: absolute;
-  z-index: 2;
-  padding: 18px 18px 0px 0px;
-  align-self: flex-end;
-  -webkit-transition: 0.4s ease-in-out;
-  -o-transition: 0.4s ease-in-out;
-  transition: 0.4s ease-in-out;
+  width: 18px;
+  height: 19px;
+  background-image: url(../images/Trash.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  top: 18px;
+  right: 15px;
 }
-
-.card__delete-button:hover {
-  opacity: 0.5;
+.card__trash:hover {
   cursor: pointer;
+  opacity: 0.5;
 }
