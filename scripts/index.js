@@ -73,13 +73,16 @@ function getCardView(cardData) {
   cardLikeBtn.addEventListener("click", () => {
     cardLikeBtn.classList.toggle("card__heart-button_active");
   });
+
   imageEl.addEventListener("click", function () {
     const popupImage = previewPopup.querySelector(".popup__image");
-    const popupTitle = previewPopup.querySelector(".popup__title");
+
     popupImage.src = cardData.link;
-    popupTitle.alt = cardData.name;
+    popupImage.alt = cardData.name;
+
     openPopup(previewPopup);
   });
+
   const cardTrashBtn = cardEl.querySelector(".card__trash");
   cardTrashBtn.addEventListener("click", function () {
     console.log(cardEl);
