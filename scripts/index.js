@@ -63,15 +63,15 @@ function renderCard(cardEl, container) {
 }
 
 function getCardView(cardData) {
-  const cardEl = cardTemplate.content.cloneNode(true);
+  const cardEl = cardTemplate.content.firstElementChild.cloneNode(true);
   const imageEl = cardEl.querySelector(".card__image");
   const cardTitle = cardEl.querySelector(".card__title");
   imageEl.src = cardData.link;
   imageEl.alt = cardData.name;
   cardTitle.textContent = cardData.name;
-  const cardLikeButton = cardEl.querySelector(".card__heart-button");
-  cardLikeButton.addEventListener("click", () => {
-    cardLikeButton.classList.toggle(".card__heart-button_active");
+  const cardLikeBtn = cardEl.querySelector(".card__heart-button");
+  cardLikeBtn.addEventListener("click", () => {
+    cardLikeBtn.classList.toggle("card__heart-button_active");
   });
   imageEl.addEventListener("click", function () {
     const popupImage = previewPopup.querySelector(".popup__image");
@@ -80,8 +80,10 @@ function getCardView(cardData) {
     popupTitle.alt = cardData.name;
     openPopup(previewPopup);
   });
-  const cardDelete = cardEl.querySelector(".card__trash");
-  cardDelete.addEventListener("click", function () {
+  const cardTrashBtn = cardEl.querySelector(".card__trash");
+  cardTrashBtn.addEventListener("click", function () {
+    console.log(cardEl);
+
     cardEl.remove();
   });
 
