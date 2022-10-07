@@ -36,7 +36,10 @@ const cardsContainer = document.querySelector(".locations__cards");
 const cardAddPopup = document.querySelector("#add-popup");
 const cardAddButton = document.querySelector("#add-button");
 const cardAddCloseBtn = cardAddPopup.querySelector(".popup__close");
-
+const popupImage = previewPopup.querySelector(".popup__image");
+const previewPopupCaption = previewPopup.querySelector(
+  ".popup__preview-caption"
+);
 const cardAddForm = document.querySelector("#add-card-form");
 const cardListEl = document.querySelector(".locations__cards");
 const cardTemplate = document.querySelector("#card-template");
@@ -75,11 +78,9 @@ function getCardView(cardData) {
   });
 
   imageEl.addEventListener("click", function () {
-    const popupImage = previewPopup.querySelector(".popup__image");
-
     popupImage.src = cardData.link;
     popupImage.alt = cardData.name;
-
+    previewPopupCaption.textContent = cardData.name;
     openPopup(previewPopup);
   });
 
@@ -107,9 +108,6 @@ profileEditCloseButton.addEventListener("click", () => {
 cardAddButton.addEventListener("click", () => {
   openPopup(cardAddPopup);
 });
-const onImagePreviewp = (cardEl) => {
-  toggleModelWindow(previewPopup);
-};
 
 cardAddCloseBtn.addEventListener("click", () => {
   closePopup(cardAddPopup);
@@ -123,7 +121,7 @@ profileEditForm.addEventListener("submit", (event) => {
   profileTitleEl.textContent = titleValue;
   profileDescriptionEl.textContent = descriptionValue;
 
-  closePopup();
+  closePopup(profileEditPopup);
 });
 cardAddForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -135,6 +133,7 @@ cardAddForm.addEventListener("submit", (e) => {
   });
   renderCard(cardView, cardListEl);
   closePopup(cardAddPopup);
+  e.target.reset();
 });
 
 initialCards.forEach(function (cardData) {

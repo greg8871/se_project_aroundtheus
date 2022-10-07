@@ -76,6 +76,12 @@
   width: 100%;
   object-fit: cover;
 }
+.popup__preview-caption {
+  margin: 10px 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: white;
+}
 
 .popup__input {
   border: 0;
