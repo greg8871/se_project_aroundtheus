@@ -7,15 +7,18 @@
   padding: 0 19px;
   background-color: rgb(0, 0, 0, 0.5);
   z-index: 3;
+  display: flex;
   justify-content: center;
   align-items: center;
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease-in;
 }
 
 .popup_is-opened {
-  display: flex;
   padding: 0px;
-  transition: ease-in-out 0.4s;
+  visibility: visible;
+  opacity: 1;
 }
 
 .popup__content_type_image .popup__image {
@@ -24,13 +27,13 @@
 }
 
 .popup__content {
-  position: fixed;
   width: 430px;
   background: white;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
   color: black;
   box-sizing: border-box;
+  position: relative;
 }
 
 .popup__content_type_image {
@@ -48,7 +51,6 @@
   width: 45px;
   height: 45px;
   padding: 0;
-  transition: ease-in-out 0.4s;
 }
 
 .popup__close:hover {
