@@ -54,11 +54,20 @@ previewCloseBtn.addEventListener("click", () => {
   closePopup(previewPopup);
 });
 
-function closePopup(popup) {
-  popup.classList.remove("popup_is-opened");
-}
 function openPopup(popup) {
   popup.classList.add("popup_is-opened");
+  document.addEventListener("keydown", handleEscape);
+  popup.addEventListener("click", handleOverlayClick);
+}
+function handleOverlayClick(event) {
+  if (event.target.classList.contains("popup_is-opened")) {
+    closePopup(event.target);
+  }
+}
+function closePopup(popup) {
+  popup.classList.remove("popup_is-opened");
+  document.addEventListener("keydown", handleEscape);
+  popup.addEventListener("click", handleOverlayClick);
 }
 
 function renderCard(cardEl, container) {
@@ -141,3 +150,10 @@ initialCards.forEach(function (cardData) {
   const cardView = getCardView(cardData);
   renderCard(cardView, cardListEl);
 });
+function handleEscape(e) {
+  const key = e.key;
+  if (key === "Escape") {
+    const openedPopup = document.querySelector(".popup_is-opened");
+    closePopup(openedPopup);
+  }
+}
