@@ -108,6 +108,24 @@
   opacity: 0.8;
   cursor: pointer;
 }
+.popup__error {
+  font-size: 12px;
+  line-height: 15px;
+
+  color: #ff0000;
+  top: calc(100% + 5px);
+  left: 0;
+  transition: opacity 0.3s;
+}
+.popup__input_type_error {
+  position: relative;
+  top: 35px;
+  line-height: 15px;
+  border-color: #ff0000;
+}
+.popup__button_disabled {
+  opacity: 0.2;
+}
 
 @media screen and (max-width: 760px) {
   .popup__content {

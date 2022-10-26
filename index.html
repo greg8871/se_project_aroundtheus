@@ -10,7 +10,6 @@
     <meta name="keywords" content="explore,travel,USA," />
     <title>Around the U.S.</title>
     <link rel="stylesheet" href="./pages/index.css" />
-    <script src="./scripts/index.js" defer></script>
   </head>
 
   <body class="body">
@@ -60,16 +59,26 @@
           <form class="popup__form" id="edit-profile-form">
             <input
               class="popup__input popup__input_type_name"
+              id="owner-name"
               name="title"
               placeholder="Name"
               type="text"
+              minlength="2"
+              maxlenght="40"
+              required
             />
+            <span class="popup__error" id="owner-name-error"></span>
             <input
               class="popup__input popup__input_type_description"
+              id="owner-description"
               name="description"
               placeholder="Description"
               type="text"
+              minlength="2"
+              maxlenght="200"
+              required
             />
+            <span class="popup__error" id="owner-description-error"></span>
             <button class="popup__submit-button" type="submit">Save</button>
           </form>
         </div>
@@ -82,16 +91,26 @@
             <input
               class="popup__input popup__input_type_name"
               name="title"
+              id="owner-title"
               placeholder="Title"
               type="text"
+              minlength="1"
+              maxlenght="30"
+              required
             />
+            <span class="popup__error" id="owner-title-error"></span>
             <input
+              id="owner-url"
               class="popup__input popup__input_type_description"
               name="link"
               placeholder="Image Link"
-              type="text"
+              type="url"
+              required
             />
-            <button class="popup__submit-button" type="submit">Save</button>
+            <span class="popup__error" id="owner-url-error"></span>
+            <button class="popup__submit-button" type="submit" disabled>
+              Save
+            </button>
           </form>
         </div>
       </div>
@@ -102,6 +121,8 @@
           <p class="popup__preview-caption"></p>
         </div>
       </div>
+      <script src="./scripts/index.js" defer></script>
+      <script src="./scripts/validate.js" defer></script>
 
       <template id="card-template">
         <div class="card">

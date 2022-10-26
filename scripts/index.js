@@ -97,7 +97,8 @@ function getCardView(cardData) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
-
+  profileTitleInput.dispatchEvent(new Event("input"));
+  profileDescriptionInput.dispatchEvent(new Event("input"));
   openPopup(profileEditPopup);
 });
 
