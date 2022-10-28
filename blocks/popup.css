@@ -61,7 +61,7 @@
 .popup__form {
   display: flex;
   flex-direction: column;
-  row-gap: 40px;
+  row-gap: 15px;
   padding: 36px;
 }
 
@@ -85,9 +85,17 @@
 }
 
 .popup__input {
-  border: 0;
-  padding: 14px 5px 14px 5px;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+   font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+   display: block;
+  width: 100%;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+  line-height: 16.94px;
+  margin-top: 14;
 }
 
 .popup__submit-button {
@@ -101,27 +109,30 @@
   font-weight: 400;
   font-size: 18px;
   display: block;
-  margin-top: 48px;
+  
 }
 
-.popup__button:hover {
+
+.popup__submit-button:hover:not(:disabled) {
   opacity: 0.8;
   cursor: pointer;
-}
+} 
 .popup__error {
   font-size: 12px;
   line-height: 15px;
-
+  
   color: #ff0000;
   top: calc(100% + 5px);
   left: 0;
   transition: opacity 0.3s;
+  height: 15px;
 }
 .popup__input_type_error {
   position: relative;
-  top: 35px;
+
   line-height: 15px;
   border-color: #ff0000;
+  
 }
 .popup__button_disabled {
   opacity: 0.2;

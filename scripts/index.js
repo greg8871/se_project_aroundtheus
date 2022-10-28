@@ -51,7 +51,7 @@ const profileDescriptionInput = profileEditForm.querySelector(
 );
 const previewCloseBtn = previewPopup.querySelector(".popup__close");
 previewCloseBtn.addEventListener("click", () => {
-  closePopup(previewPopup);
+  closePopup(previewPopup)
 });
 
 function openPopup(popup) {
@@ -66,8 +66,8 @@ function handleOverlayClick(event) {
 }
 function closePopup(popup) {
   popup.classList.remove("popup_is-opened");
-  document.addEventListener("keydown", handleEscape);
-  popup.addEventListener("click", handleOverlayClick);
+  document.removeEventListener("keydown", handleEscape);
+  popup.removeEventListener("click", handleOverlayClick);
 }
 
 function renderCard(cardEl, container) {
@@ -96,6 +96,7 @@ function getCardView(cardData) {
   const cardTrashBtn = cardEl.querySelector(".card__trash");
   cardTrashBtn.addEventListener("click", function () {
     console.log(cardEl);
+ 
 
     cardEl.remove();
   });
@@ -106,10 +107,15 @@ function getCardView(cardData) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
-  profileTitleInput.dispatchEvent(new Event("input"));
-  profileDescriptionInput.dispatchEvent(new Event("input"));
+  
+ 
+
   openPopup(profileEditPopup);
+ 
+
 });
+ 
+
 
 profileEditCloseButton.addEventListener("click", () => {
   closePopup(profileEditPopup);
@@ -144,6 +150,9 @@ cardAddForm.addEventListener("submit", (e) => {
   renderCard(cardView, cardListEl);
   closePopup(cardAddPopup);
   e.target.reset();
+  const submitButton = cardAddForm.querySelector(config.submitButtonSelector);
+  // disable button
+  disableSubmitButton(submitButton, config.inactiveButtonClass);
 });
 
 initialCards.forEach(function (cardData) {
