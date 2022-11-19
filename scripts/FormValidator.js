@@ -40,22 +40,22 @@ class FormValidator {
             this._submitButton.disabled = false;
           }   
 
-        _toggleButtonState(inputList, btnE1) {
-            if (this.hasInvalidInput(inputEls)) {
-                disableSubmitButton(submitButton, inactiveButtonClass);
+        _toggleButtonState() {
+            if (this._hasInvalidInput()) {
+                this.disableSubmitButton();
               } else {
-                enableSubmitButton(submitButton, inactiveButtonClass);
+                this._enableSubmitButton();
               }
         };
 
-        _hasInvalidInput(inputList){
+        _hasInvalidInput(){
             return this._inputList.some((inputEl) => {
                 return !inputEl.validity.valid;
               });
         };
 
         _setEventListeners(){
-            this._inputList = Array.from(this._formEl.querySelectorAll(this._inputSelector));
+            this._inputList = Array.from(this._formEl.querySelectorAll(this._inputSelector));;
             this._submitButton = this._formEl.querySelector(this._submitButtonSelector);
             this._toggleButtonState();
             this._inputList.forEach((inputEl) => {
@@ -65,11 +65,16 @@ class FormValidator {
       });
     });
         }
-
+        resetValidation() {
+          this._toggleButtonState()
+          this._inputList.forEach((input) => {
+            this._hideInputError(input);
+          })
+        }
 
 
     enableValidation(){
-        this._formElement.addEventListener("submit", (e) => {
+        this._formEl.addEventListener("submit", (e) => {
               e.preventDefault();
     });
     this._setEventListeners() 

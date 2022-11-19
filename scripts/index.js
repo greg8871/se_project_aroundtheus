@@ -29,15 +29,15 @@ const initialCards = [
   },
 ];
 const config = {
-  inputSelector: ".form__input",
-  submitButtonSelector: ".form__button",
-  inactiveButtonClass: "form__button_disabled",
-  inputErrorClass: "form__input_type_error",
-  errorClass: "form__input-error_active",
+  
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__submit-button",
+  inactiveButtonClass: "popup__submit-button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
 }
 const profileEditButton = document.querySelector(".profile__edit-button");
-const profileEditPopup = document.querySelector("#edit-popup");
-const profileEditCloseButton = profileEditPopup.querySelector(".popup__close");
+const editPopup = document.querySelector("#edit-popup");
 const profileEditForm = document.querySelector("#edit-profile-form");
 const profileTitleEl = document.querySelector(".profile__name-title");
 const profileDescriptionEl = document.querySelector(".profile__description");
@@ -49,7 +49,7 @@ const popupImage = previewPopup.querySelector(".popup__image");
 const previewPopupCaption = previewPopup.querySelector(
   ".popup__preview-caption"
 );
-const cardAddForm = document.querySelector("#add-card-form");
+const cardForm = document.querySelector("#add-card-form");
 const cardListEl = document.querySelector(".locations__cards");
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
@@ -58,15 +58,13 @@ const profileDescriptionInput = profileEditForm.querySelector(
   ".popup__input_type_description"
 );
 const previewCloseBtn = previewPopup.querySelector(".popup__close");
-previewCloseBtn.addEventListener("click", () => {
-  closePopup(previewPopup)
-
-  const profieFormValidator = new FormValidator(
+const profieFormValidator = new FormValidator(
     config,
     profileEditForm
     );
   const cardFormValidator = new FormValidator(config, cardForm);
-
+  previewCloseBtn.addEventListener("click", () => {
+    closePopup(previewPopup)
 });
 const cardSelector  = '#card-template';
 
@@ -101,9 +99,15 @@ function handleCardSubmit(evt) {
   closePopup(cardAddPopup);
 }
 function handleEditButtonClick() {
-  fillProfileForm();
+ 
   profieFormValidator.resetValidation();
   openPopup(editPopup);
+}
+function handleProfileFormSubmit(){
+
+}
+function initCards(){
+
 }
 
 function handlePreveiwImage(card){
@@ -115,11 +119,11 @@ function handlePreveiwImage(card){
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
-  openPopup(profileEditPopup);
+  openPopup(editPopup);
  });
   closePopup(cardAddPopup);
   
-  const submitButton = cardAddForm.querySelector(config.submitButtonSelector);
+  const submitButton = cardForm.querySelector(config.submitButtonSelector);
   // disable button
   
 
@@ -136,7 +140,7 @@ function handleEscape(e) {
 profileEditButton.addEventListener("click", handleAddCardClick);
 cardForm.addEventListener("submit", handleCardSubmit);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-profile__edit-button.addEventListener("click", handleEditButtonClick);
+document.querySelector('.profile__edit-button').addEventListener("click", handleEditButtonClick);
 initCards();
 
 profieFormValidator.enableValidation();
