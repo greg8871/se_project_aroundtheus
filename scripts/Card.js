@@ -22,8 +22,9 @@ class Card {
       this._likeBtn.classList.toggle(this._likeActiveClass);
     });
 
-    this._trashBtn.addEventListener("click", function () {
+    this._trashBtn.addEventListener("click", ()  =>{
       this._element.remove();
+      this._element = null;
     });
   };
 
