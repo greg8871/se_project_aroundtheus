@@ -10,6 +10,7 @@ class Card {
     this._titleSelector = ".card__title"
     this._trashSelector = ".card__trash"
     this._likeActiveClass = "card__heart-button_active"
+    
   }
 
   _setEventListeners() {
@@ -26,6 +27,7 @@ class Card {
       this._element.remove();
       this._element = null;
     });
+  
   };
 
   _getTemplate() {
