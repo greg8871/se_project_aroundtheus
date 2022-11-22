@@ -1,27 +1,34 @@
-class Utils {
-function openPopup(popup) {
-    console.log (popup)
+
+
+export const openPopup = (popup) => {
     popup.classList.add("popup_is-opened");
     document.addEventListener("keydown", handleEscape);
     popup.addEventListener("click", handleOverlayClick);
-    closeBtn.addEventListener("click",  ()=> closePopup(popup)) 
+    popup.querySelector('.popup__close').addEventListener("click", () => {
+        closePopup(popup)
+      }) 
   }
-  function closePopup(popup) {
+export  const closePopup = (popup) => {
     popup.classList.remove("popup_is-opened");
     document.removeEventListener("keydown", handleEscape);
     popup.removeEventListener("click", handleOverlayClick);
   }
-  function handleEscape(e) {
+export  const handleEscape = (e) => {
     const key = e.key;
     if (key === "Escape") {
       const openedPopup = document.querySelector(".popup_is-opened");
       closePopup(openedPopup);
     }
   }
+  export const handleOverlayClick = (event) => {
+    if (event.target.classList.contains("popup_is-opened")) {
+      closePopup(event.target);
+    }
+  }
 
 
 
 
-}
 
-  export {openPopup, closePopup};
+
+  //export {openPopup, closePopup};
