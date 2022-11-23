@@ -19,9 +19,13 @@ class Card {
       name: this._name
     }));
 
-    this._likeBtn.addEventListener("click", () => {
+   _handleLike = () => {
+  this._likeBtn.classList.toggle(this._likeActiveClass);
+}
+
+this._likeBtn.addEventListener("click", this._handleLike) 
       this._likeBtn.classList.toggle(this._likeActiveClass);
-    });
+    };
 
     this._trashBtn.addEventListener("click", ()  =>{
       this._element.remove();
@@ -41,7 +45,6 @@ class Card {
     this._element = this._getTemplate();
 
     this._imageEl = this._element.querySelector(this._imageSelector);
-    this._titleEl = this._element.querySelector(this._titleSelector);
     this._imageEl.src = this._link;
     this._imageEl.alt = this._name;
     this._titleEl.textContent = this._name;

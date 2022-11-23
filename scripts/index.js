@@ -118,8 +118,7 @@ profileEditButton.addEventListener("click", () => {
  });
   
   
-  const submitButton = cardForm.querySelector(config.submitButtonSelector);
-  // disable button
+ 
   
 
   initialCards.forEach(function (cardData) {
@@ -130,7 +129,7 @@ cardAddButton.addEventListener("click", handleAddCardClick);
 cardForm.addEventListener("submit", handleCardSubmit);
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
 profileEditButton.addEventListener("click", handleEditButtonClick);
-initCards();
+
 
 profieFormValidator.enableValidation();
 cardFormValidator.enableValidation();
