@@ -94,7 +94,7 @@ function handleProfileFormSubmit(evt){
   profileTitleEl.textContent = profileTitleInput.value;
   profileDescriptionEl.textContent = profileDescriptionInput.value;
 
-  closePopup(cardAddPopup);
+  closePopup(editPopup);
 }
 function initCards(){
 
@@ -116,7 +116,7 @@ profileEditButton.addEventListener("click", () => {
   profieFormValidator.resetValidation();
   openPopup(editPopup);
  });
-  closePopup(cardAddPopup);
+  
   
   const submitButton = cardForm.querySelector(config.submitButtonSelector);
   // disable button

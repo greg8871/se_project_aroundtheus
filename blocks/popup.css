@@ -41,6 +41,9 @@
   background: none;
   border-radius: 0;
 }
+.popup__submit-button_disabled {
+  opacity: 0.2;
+}
 
 .popup__close {
   position: absolute;
