@@ -2,14 +2,23 @@ export const openPopup = (popup) => {
   popup.classList.add("popup_is-opened");
   document.addEventListener("keydown", handleEscape);
   popup.addEventListener("click", handleOverlayClick);
-  popup.querySelector(".popup__close").addEventListener("click", closePopup);
+  function closePopupByCloseButtonClick(event) {
+    const popup = document.querySelector(".popup_is-opened");
+
+    closePopup(popup);
+  }
+  popup
+    .querySelector(".popup__close")
+    .addEventListener("click", closePopupByCloseButtonClick);
 };
 
 export const closePopup = (popup) => {
   popup.classList.remove("popup_is-opened");
   document.removeEventListener("keydown", handleEscape);
   popup.removeEventListener("click", handleOverlayClick);
-  popup.querySelector(".popup__close").removeEventListener("click", closePopup);
+  popup
+    .querySelector(".popup__close")
+    .removeEventListener("click", closePopupByCloseButtonClick);
 };
 export const handleEscape = (e) => {
   const key = e.key;
