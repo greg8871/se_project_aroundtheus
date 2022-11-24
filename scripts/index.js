@@ -94,7 +94,7 @@ function handleProfileFormSubmit(evt) {
 
   closePopup(editPopup);
 }
-function initCards() {}
+
 function fillProfileForm() {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
@@ -106,12 +106,6 @@ function handlePreveiwImage(card) {
   previewPopupCaption.textContent = card.name;
   openPopup(previewPopup);
 }
-profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileTitleEl.textContent;
-  profileDescriptionInput.value = profileDescriptionEl.textContent;
-  profieFormValidator.resetValidation();
-  openPopup(editPopup);
-});
 
 initialCards.forEach(function (cardData) {
   renderCard(cardData, cardListEl);

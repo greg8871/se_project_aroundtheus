@@ -13,17 +13,17 @@ class Card {
         name: this._name,
       })
     );
-
-    this._likeBtn.addEventListener("click", this._handleLike);
-
-    this._trashBtn.addEventListener("click", () => {
-      this._element.remove();
-      this._element = null;
-    });
+    this._trashBtn.addEventListener("click", () => this._handleDelete());
+    this._likeBtn.addEventListener("click", () => this._handleLike());
   }
 
   _handleLike = () => {
     this._likeBtn.classList.toggle("card__heart-button_active");
+  };
+
+  _handleDelete = () => {
+    this._element.remove();
+    this._element = null;
   };
 
   _getTemplate() {
