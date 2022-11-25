@@ -1,12 +1,14 @@
+function closePopupByCloseButtonClick(event) {
+  const popup = document.querySelector(".popup_is-opened");
+
+  closePopup(popup);
+}
+
 export const openPopup = (popup) => {
   popup.classList.add("popup_is-opened");
   document.addEventListener("keydown", handleEscape);
   popup.addEventListener("click", handleOverlayClick);
-  function closePopupByCloseButtonClick(event) {
-    const popup = document.querySelector(".popup_is-opened");
 
-    closePopup(popup);
-  }
   popup
     .querySelector(".popup__close")
     .addEventListener("click", closePopupByCloseButtonClick);
