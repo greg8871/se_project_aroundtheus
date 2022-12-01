@@ -34,5 +34,3 @@ export const handleOverlayClick = (event) => {
     closePopup(event.target);
   }
 };
-
-//export {openPopup, closePopup};
