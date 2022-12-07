@@ -3,15 +3,6 @@ import { ESC_KEYCODE } from "./constants";
 export default class Popup {
   constructor(popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
-    this._handleEscUp = this._handleEscUp.bind(this);
-  }
-
-  _handleEscUp(evt) {
-    evt.preventDefault();
-
-    if (evt.which === ESC_KETCODE) {
-      this.close();
-    }
   }
 
   setEventListeners() {
@@ -24,17 +15,19 @@ export default class Popup {
       }
     });
   }
-  open() {
-  this._popupElement.classList.add("popup_opened");
-  window.addEventListener("keydown", this._handleEscClose);
-}
 
-close() {
-  this._popupElement.classList.remove("popup_opened");
-  window.removeEventListener("keydown", this._handleEscClose);
-}
-_handleEscClose = (evt) => {
-  if (evt.key === "Escape") {
-    this.close();
+  open() {
+    this._popupElement.classList.add("popup_opened");
+    window.addEventListener("keydown", this._handleEscClose);
   }
-};
+
+  close() {
+    this._popupElement.classList.remove("popup_opened");
+    window.removeEventListener("keydown", this._handleEscClose);
+  }
+  _handleEscClose = (evt) => {
+    if (evt.key === "Escape") {
+      this.close();
+    }
+  };
+}

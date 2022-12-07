@@ -2,7 +2,7 @@ import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator";
 import { openPopup, closePopup } from "../utils";
-
+import Section from "../components/Section.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -52,7 +52,7 @@ const previewPopupCaption = previewPopup.querySelector(
 const cardForm = document.querySelector("#add-card-form");
 const addCardFormTitle = cardForm.querySelector("#owner-title");
 const addCardFormLink = cardForm.querySelector("#owner-url");
-const cardListEl = document.querySelector(".locations__cards");
+const cardListSelector = ".locations__cards";
 const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
@@ -64,10 +64,20 @@ const profieFormValidator = new FormValidator(config, profileEditForm);
 const cardFormValidator = new FormValidator(config, cardForm);
 
 const cardSelector = "#card-template";
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (data) => {
+      cardList.addItem(renderCard(data));
+    },
+  },
+  cardListSelector
+);
+cardList.renderItems(initialCards);
 
-function renderCard(cardData, container) {
+function renderCard(cardData) {
   const card = new Card(cardData, cardSelector, handlePreveiwImage);
-  container.prepend(card.getView());
+  return card.getView();
 }
 function handleAddCardClick() {
   cardForm.reset();
@@ -76,10 +86,11 @@ function handleAddCardClick() {
 }
 function handleCardSubmit(evt) {
   evt.preventDefault();
-  renderCard(
-    { name: addCardFormTitle.value, link: addCardFormLink.value, cardSelector },
-    cardListEl
-  );
+  renderCard({
+    name: addCardFormTitle.value,
+    link: addCardFormLink.value,
+    cardSelector,
+  });
   closePopup(cardAddPopup);
 }
 
@@ -109,7 +120,7 @@ function handlePreveiwImage(card) {
 }
 
 initialCards.forEach(function (cardData) {
-  renderCard(cardData, cardListEl);
+  renderCard(cardData);
 });
 
 cardAddButton.addEventListener("click", handleAddCardClick);
