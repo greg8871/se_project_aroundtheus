@@ -7,7 +7,7 @@ class Section {
 
   renderItems(items) {
     this._items.forEach((item) => {
-      this.addItem(item);
+      this._renderer(item);
     });
   }
 

@@ -1,8 +1,9 @@
 import "./index.css";
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator";
-import { openPopup, closePopup } from "../utils";
+
 import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -73,7 +74,7 @@ const cardList = new Section(
   },
   cardListSelector
 );
-cardList.renderItems(initialCards);
+cardList.renderItems();
 
 function renderCard(cardData) {
   const card = new Card(cardData, cardSelector, handlePreveiwImage);
@@ -111,6 +112,16 @@ function fillProfileForm() {
   profileTitleInput.value = profileTitleEl.textContent;
   profileDescriptionInput.value = profileDescriptionEl.textContent;
 }
+const userInfo = new UserInfo({
+  userNameSelector: selectors.profileNameTitleElement,
+  userTitleSelector: selectors.profileDescriptionElement,
+});
+
+const { userName, userTitle } = userInfo.getUserInfo();
+document.querySelector(selectors.profileNameTitleInput).value = userName;
+document.querySelector(selectors.profileDescriptionInput).value = userTitle;
+addFormValidator.resetValidation();
+editProfilePopup.open();
 
 function handlePreveiwImage(card) {
   popupImage.src = card.link;
@@ -118,10 +129,6 @@ function handlePreveiwImage(card) {
   previewPopupCaption.textContent = card.name;
   openPopup(previewPopup);
 }
-
-initialCards.forEach(function (cardData) {
-  renderCard(cardData);
-});
 
 cardAddButton.addEventListener("click", handleAddCardClick);
 cardForm.addEventListener("submit", handleCardSubmit);
