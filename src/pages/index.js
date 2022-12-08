@@ -75,6 +75,7 @@ const addCardPopup = new PopupWithForm({
   handleFormSubmit: (data) => {},
 });
 const viewImage = new PopupWithImage("#preview__popup");
+viewImage.setEventListeners();
 const cardList = new Section(
   {
     items: initialCards,
@@ -126,7 +127,7 @@ document.querySelector(profileNameSelector).value = userName;
 document.querySelector(profileDescriptionSelector).value = userTitle;
 
 function handlePreveiwImage(card) {
-  viewImage.open(card.link, card.name);
+  viewImage.open({ link: card.link, name: card.name });
   //popupImage.src = card.link;
   //popupImage.alt = card.name;
   // previewPopupCaption.textContent = card.name;
