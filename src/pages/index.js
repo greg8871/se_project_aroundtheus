@@ -70,10 +70,12 @@ const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
   handleFormSubmit: (data) => {},
 });
+editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-popup",
   handleFormSubmit: (data) => {},
 });
+addCardPopup.setEventListeners();
 const viewImage = new PopupWithImage("#preview__popup");
 viewImage.setEventListeners();
 const cardList = new Section(
