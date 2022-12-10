@@ -104,9 +104,8 @@ function handleCardSubmit(evt) {
     link: addCardFormLink.value,
     cardSelector,
   });
-  closePopup(cardAddPopup);
+  addCardPopup.close();
 }
-
 function handleEditButtonClick() {
   profieFormValidator.resetValidation();
   editProfilePopup.open();
@@ -116,17 +115,18 @@ function handleProfileFormSubmit(evt) {
   profileTitleEl.textContent = profileTitleInput.value;
   profileDescriptionEl.textContent = profileDescriptionInput.value;
 
-  closePopup(editPopup);
+  editProfilePopup.close();
 }
-
 const userInfo = new UserInfo({
   userNameSelector: profileNameSelector,
   userTitleSelector: profileDescriptionSelector,
 });
-
-const { userName, userTitle } = userInfo.getUserInfo();
-document.querySelector(profileNameSelector).value = userName;
-document.querySelector(profileDescriptionSelector).value = userTitle;
+function fillProfileForm() {
+  const { userName, userTitle } = userInfo.getUserInfo();
+  profileTitleEl.value = userName;
+  profileDescriptionEl.value = userTitle;
+}
+fillProfileForm();
 
 function handlePreveiwImage(card) {
   viewImage.open({ link: card.link, name: card.name });
