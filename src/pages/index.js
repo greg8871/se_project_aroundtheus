@@ -81,7 +81,7 @@ editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-popup",
   handleFormSubmit: (data) => {
-    evt.preventDefault();
+    console.log(addCardFormTitle.value, addCardFormLink.value);
     createCard({
       name: addCardFormTitle.value,
       link: addCardFormLink.value,
@@ -110,6 +110,7 @@ function renderCard(card) {
 
 function createCard(cardData) {
   const card = new Card(cardData, cardSelector, handlePreveiwImage);
+  console.log(cardData, card);
   return card.getView();
 }
 function handleAddCardClick() {
@@ -147,10 +148,7 @@ function fillProfileForm(userName, userTitle) {
     description: userTitle,
   });
   //const { userName, userTitle } = userInfo.getUserInfo();
-  profileTitleEl.value = userName;
-  profileDescriptionEl.value = userTitle;
 }
-//fillProfileForm();
 
 function handlePreveiwImage(card) {
   viewImage.open({ link: card.link, name: card.name });
