@@ -81,12 +81,11 @@ editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-popup",
   handleFormSubmit: (data) => {
-    console.log(addCardFormTitle.value, addCardFormLink.value);
-    createCard({
+    const card = createCard({
       name: addCardFormTitle.value,
       link: addCardFormLink.value,
-      cardSelector,
     });
+    renderCard(card);
     addCardPopup.close();
   },
 });
@@ -114,7 +113,7 @@ function createCard(cardData) {
   return card.getView();
 }
 function handleAddCardClick() {
-  profieFormValidator.resetValidation();
+  cardFormValidator.resetValidation();
   addCardPopup.open();
 }
 function handleCardSubmit(evt) {
@@ -122,7 +121,6 @@ function handleCardSubmit(evt) {
   createCard({
     name: addCardFormTitle.value,
     link: addCardFormLink.value,
-    cardSelector,
   });
   addCardPopup.close();
 }
