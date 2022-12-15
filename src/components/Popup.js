@@ -6,7 +6,7 @@ export default class Popup {
   }
 
   setEventListeners() {
-    this._popupElement.addEventListener("click", (evt) => {
+    this._popupElement.addEventListener("mousedown", (evt) => {
       if (
         evt.target.classList.contains("popup") ||
         evt.target.classList.contains("popup__close")
@@ -18,12 +18,12 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add("popup_is-opened");
-    window.addEventListener("keydown", this._handleEscClose);
+    window.addEventListener("keyup", this._handleEscClose);
   }
 
   close() {
     this._popupElement.classList.remove("popup_is-opened");
-    window.removeEventListener("keydown", this._handleEscClose);
+    window.removeEventListener("keyup", this._handleEscClose);
   }
   _handleEscClose = (evt) => {
     if (evt.key === "Escape") {

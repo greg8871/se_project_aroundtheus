@@ -70,9 +70,9 @@ const cardFormValidator = new FormValidator(config, cardForm);
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
   handleFormSubmit: (data) => {
-    profileTitleEl.textContent = data.title;
-    profileDescriptionEl.textContent = data.description;
-
+    //profileTitleEl.textContent = data.title;
+    //profileDescriptionEl.textContent = data.description;
+    userInfo.setUserInfo({ name: data.title, about: data.description });
     editProfilePopup.close();
   },
 });
@@ -82,8 +82,8 @@ const addCardPopup = new PopupWithForm({
   popupSelector: "#add-popup",
   handleFormSubmit: (data) => {
     const card = createCard({
-      name: addCardFormTitle.value,
-      link: addCardFormLink.value,
+      name: data.title,
+      link: data.link,
     });
     renderCard(card);
     addCardPopup.close();
@@ -116,25 +116,14 @@ function handleAddCardClick() {
   cardFormValidator.resetValidation();
   addCardPopup.open();
 }
-function handleCardSubmit(evt) {
-  evt.preventDefault();
-  createCard({
-    name: addCardFormTitle.value,
-    link: addCardFormLink.value,
-  });
-  addCardPopup.close();
-}
+
 function handleEditButtonClick() {
-  const userInfo = new UserInfo({
-    userNameSelector: profileNameSelector,
-    userTitleSelector: profileDescriptionSelector,
-  });
   const { name, job } = userInfo.getUserInfo();
   fillProfileForm(name, job);
   profieFormValidator.resetValidation();
   editProfilePopup.open();
 }
-function handleProfileFormSubmit(evt) {}
+
 const userInfo = new UserInfo({
   userNameSelector: profileNameSelector,
   userTitleSelector: profileDescriptionSelector,
