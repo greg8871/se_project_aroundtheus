@@ -1,4 +1,4 @@
-class Card {
+export default class Card {
   constructor(
     cardData,
     cardSelector,
@@ -12,6 +12,10 @@ class Card {
     this._handlePreviewImage = handlePreviewImage;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._likes = data.likes;
+    this._cardId = data._id;
+    this._userId = data.userId;
+    this._ownerId = data.owner._id;
   }
 
   _setEventListeners() {
@@ -21,7 +25,7 @@ class Card {
         name: this._name,
       })
     );
-    this._trashBtn.addEventListener("click", () => this._handleDelete());
+    //this._trashBtn.addEventListener("click", () => this._handleDelete());
     this._likeBtn.addEventListener("click", () => this._handleLike());
 
     this._element;
@@ -67,22 +71,16 @@ class Card {
 
   getView() {
     this._element = this._getTemplate();
-
     this._imageEl = this._element.querySelector(".card__image");
     this._imageEl.src = this._link;
     this._imageEl.alt = this._name;
-
     const titleEl = this._element.querySelector(".card__title");
     titleEl.textContent = this._name;
-
     this._likeBtn = this._element.querySelector(".card__heart-button");
     this._trashBtn = this._element.querySelector(".card__trash");
     this._likeCounter = this._element.querySelector(".cards__like-counter");
-
-    this._setEventListeners();
+    // this._setEventListeners();
     this.showLikes(this._likes);
     return this._element;
   }
 }
-
-export default Card;

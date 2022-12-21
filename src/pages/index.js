@@ -5,32 +5,8 @@ import PopupWithForm from "../components/PopupWithForm";
 import PopupWithImage from "../components/PopupWithImage";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
-const initialCards = [
-  {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-  },
-  {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-  },
-  {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-  },
-  {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-  },
-  {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-  },
-  {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg",
-  },
-];
+import Api from "../components/Api.js";
+
 const config = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit-button",
@@ -38,45 +14,34 @@ const config = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 };
-const profileEditButton = document.querySelector(".profile__edit-button");
-const editPopup = document.querySelector("#edit-popup");
-const profileEditForm = document.querySelector("#edit-profile-form");
-const profileTitleEl = document.querySelector(".profile__name-title");
-const profileDescriptionEl = document.querySelector(".profile__description");
-const previewPopup = document.querySelector("#preview__popup");
-const cardAddPopup = document.querySelector("#add-popup");
-const cardAddButton = document.querySelector("#add-button");
-const cardAddCloseBtn = cardAddPopup.querySelector(".popup__close");
-const popupImage = previewPopup.querySelector(".popup__image");
-const previewPopupCaption = previewPopup.querySelector(
-  ".popup__preview-caption"
-);
-const cardForm = document.querySelector("#add-card-form");
-const profileNameSelector = ".profile__name-title";
-const profileDescriptionSelector = ".profile__description";
-const addCardFormTitle = cardForm.querySelector("#owner-title");
-const addCardFormLink = cardForm.querySelector("#owner-url");
-const cardListSelector = ".locations__cards";
-const profileTitleInput = profileEditForm.querySelector(
-  ".popup__input_type_name"
-);
-const profileDescriptionInput = profileEditForm.querySelector(
-  ".popup__input_type_description"
-);
-const cardSelector = "#card-template";
-const profieFormValidator = new FormValidator(config, profileEditForm);
-const cardFormValidator = new FormValidator(config, cardForm);
+const api = new Api("https://around.nomoreparties.co/v1/group-12", {
+  authorization: "d8092ba9-4c2a-4483-82e5-2411b2c0153d",
+  "Content-Type": "application/json",
+});
+let cardSection = null;
+let userId = null;
+
+const cardFormValidator = new FormValidator(config);
 
 const editProfilePopup = new PopupWithForm({
-  popupSelector: "#edit-popup",
-  handleFormSubmit: (data) => {
-    //profileTitleEl.textContent = data.title;
-    //profileDescriptionEl.textContent = data.description;
-    userInfo.setUserInfo({ name: data.title, about: data.description });
-    editProfilePopup.close();
+  handleFormSubmit: (evt, data) => {
+    evt.preventDefault();
+    editProfilePopup.renderFormLoading(true);
+    cardsApi
+      .editProfile({
+        name: data.name,
+        about: data.description,
+      })
+      .then((res) => {
+        editProfilePopup.setUserInfo(res);
+      })
+      .then(() => editProfilePopup.close())
+      .catch((err) => console.log(err))
+      .finally(() => {
+        editProfilePopup.renderFormLoading(false);
+      });
   },
 });
-
 editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
   popupSelector: "#add-popup",
@@ -92,24 +57,34 @@ const addCardPopup = new PopupWithForm({
 addCardPopup.setEventListeners();
 const viewImage = new PopupWithImage("#preview__popup");
 viewImage.setEventListeners();
-const cardList = new Section(
-  {
-    items: initialCards,
-    renderer: (data) => {
-      renderCard(createCard(data));
-    },
-  },
-  cardListSelector
-);
-cardList.renderItems();
 
+Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
+  ([data, initialCards]) => {
+    userId = data._id;
+    userInfo.setUserInfo({
+      name: data.name,
+      about: data.about,
+      avatar: data.avatar,
+    });
+    const cardList = new Section(
+      {
+        items: initialCards,
+        renderer: (data) => {
+          renderCard(createCard(data, userId));
+        },
+      },
+      cardListSelector
+    );
+    cardList.renderItems();
+  }
+);
 function renderCard(card) {
   cardList.addItem(card);
 }
 
 function createCard(cardData) {
   const card = new Card(cardData, cardSelector, handlePreveiwImage);
-  console.log(cardData, card);
+
   return card.getView();
 }
 function handleAddCardClick() {
@@ -134,16 +109,27 @@ function fillProfileForm(userName, userTitle) {
     title: userName,
     description: userTitle,
   });
-  //const { userName, userTitle } = userInfo.getUserInfo();
 }
 
 function handlePreveiwImage(card) {
   viewImage.open({ link: card.link, name: card.name });
-  //popupImage.src = card.link;
-  //popupImage.alt = card.name;
-  // previewPopupCaption.textContent = card.name;
-  //openPopup(previewPopup);
 }
+const cardsApi = new API(api_config);
+
+async function init() {
+  Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()])
+    .then(([userData, cards]) => {
+      profileInfoElement.setUserInfo({
+        name: userData.name,
+        about: userData.about,
+        avatar: userData.avatar,
+        _id: userData._id,
+      });
+      cardSection.renderItems(cards);
+    })
+    .catch((err) => console.log(err));
+}
+init();
 
 cardAddButton.addEventListener("click", handleAddCardClick);
 profileEditButton.addEventListener("click", handleEditButtonClick);

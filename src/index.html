@@ -25,6 +25,11 @@
       </header>
       <main>
         <section class="profile">
+          <div class="profile__avatar">
+            <button
+              class="profile__avatar-button"
+              id="avatar-button"
+              type="button">edit</button>
           <img
             src="<%=require('./images/jacques-cousteau.jpg')%>"
             class="profile__avatar"
@@ -120,7 +125,43 @@
           <p class="popup__preview-caption"></p>
         </div>
       </div>
+      <div class="popup" id="confirm-popup">
+        <div class="popup__content popup__content_confirm">
+          <form class="popup__form">
+            <h3 class="popup__title popup__title_confirm">Are you sure?</h3>
+            <button class="popup__button" type="submit" >"yes"</button>
+          </form>
+          <button
+          class="popup__close-button"
+          type="button"></button>
+      </div>
+    </div>
 
+    <div class="popup" id="avatar-popup">
+      <div class="popup__content">
+        <form class="popup__form" id="avatar-form" novalidate>
+          <h3 class="popup__title">Change profile picture</h3>
+          <input
+            name="avatar"
+            placeholder="Image Link"
+            id="avatar-link"
+            type="url"
+            class="popup__input popup__input_type_avatar"
+            required
+          />
+          <span
+            class="popup__error popup__error_visible"
+            id="avatar-link-error"
+          ></span>
+          <button class="popup__button" type="submit" >"Save"</button>
+            
+          </button>
+        </form>
+        <button
+          class="popup__close-button"
+          type="button"></button>
+      </div>
+    </div>
 
       <template id="card-template">
         <div class="card">
