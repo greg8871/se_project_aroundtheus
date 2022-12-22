@@ -38,7 +38,8 @@ export const validationSettings = {
 export const selectors = {
   cardListElement: ".cards__array",
   cardTemplate: "#card-template",
-
+  profileNameSelector: ".profile__name-title",
+  profileDescriptionSelector: "profile__description",
   profileEditPopup: "#edit-popup",
   cardAddPopup: "#add-popup",
   profileNameElement: ".profile__name",

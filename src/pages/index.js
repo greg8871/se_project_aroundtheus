@@ -6,7 +6,7 @@ import PopupWithImage from "../components/PopupWithImage";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-
+import { selectors } from "../utils/constants.js";
 const config = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit-button",
@@ -24,6 +24,7 @@ let userId = null;
 const cardFormValidator = new FormValidator(config);
 
 const editProfilePopup = new PopupWithForm({
+  popupSelector: "#edit-popup",
   handleFormSubmit: (evt, data) => {
     evt.preventDefault();
     editProfilePopup.renderFormLoading(true);
@@ -100,8 +101,8 @@ function handleEditButtonClick() {
 }
 
 const userInfo = new UserInfo({
-  userNameSelector: profileNameSelector,
-  userTitleSelector: profileDescriptionSelector,
+  userNameSelector: selectors.profileNameSelector,
+  userTitleSelector: selectors.profileDescriptionSelector,
 });
 
 function fillProfileForm(userName, userTitle) {
@@ -114,7 +115,6 @@ function fillProfileForm(userName, userTitle) {
 function handlePreveiwImage(card) {
   viewImage.open({ link: card.link, name: card.name });
 }
-const cardsApi = new API(api_config);
 
 async function init() {
   Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()])
@@ -131,7 +131,7 @@ async function init() {
 }
 init();
 
-cardAddButton.addEventListener("click", handleAddCardClick);
-profileEditButton.addEventListener("click", handleEditButtonClick);
-profieFormValidator.enableValidation();
+//cardAddButton.addEventListener("click", handleAddCardClick);
+//profileEditButton.addEventListener("click", handleEditButtonClick);
+//profieFormValidator.enableValidation();
 cardFormValidator.enableValidation();
