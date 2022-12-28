@@ -6,6 +6,7 @@ export default class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formEl = formEl;
+
     this._inputList = Array.from(
       this._formEl.querySelectorAll(this._inputSelector)
     );

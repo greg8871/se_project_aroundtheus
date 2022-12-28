@@ -6,7 +6,14 @@ import PopupWithImage from "../components/PopupWithImage";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
-import { selectors } from "../utils/constants.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation";
+import {
+  cardSelector,
+  selectors,
+  cardForm,
+  editPopup,
+  validationSettings,
+} from "../utils/constants.js";
 const config = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit-button",
@@ -14,14 +21,23 @@ const config = {
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__input-error_active",
 };
-const api = new Api("https://around.nomoreparties.co/v1/group-12", {
+const cardsApi = new Api("https://around.nomoreparties.co/v1/group-12", {
   authorization: "d8092ba9-4c2a-4483-82e5-2411b2c0153d",
   "Content-Type": "application/json",
 });
 let cardSection = null;
 let userId = null;
 
-const cardFormValidator = new FormValidator(config);
+const cardFormValidator = new FormValidator(config, cardForm);
+const addFormValidator = new FormValidator(config, editPopup);
+addFormValidator.enableValidation();
+
+const avatarFormElement = document.querySelector("#avatar-form");
+const avatarFormValidator = new FormValidator(
+  validationSettings,
+  avatarFormElement
+);
+avatarFormValidator.enableValidation();
 
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
@@ -44,8 +60,9 @@ const editProfilePopup = new PopupWithForm({
   },
 });
 editProfilePopup.setEventListeners();
+
 const addCardPopup = new PopupWithForm({
-  popupSelector: "#add-popup",
+  popupSelector: selectors.profileEditPopup,
   handleFormSubmit: (data) => {
     const card = createCard({
       name: data.title,
@@ -59,7 +76,12 @@ addCardPopup.setEventListeners();
 const viewImage = new PopupWithImage("#preview__popup");
 viewImage.setEventListeners();
 
-Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
+const confirmationPopup = new PopupWithConfirmation({
+  popupSelector: selectors.confirmPopup,
+});
+confirmationPopup.setEventListeners();
+
+Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()]).then(
   ([data, initialCards]) => {
     userId = data._id;
     userInfo.setUserInfo({
@@ -74,17 +96,24 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
           renderCard(createCard(data, userId));
         },
       },
-      cardListSelector
+      selectors.locationsCardSelector
     );
     cardList.renderItems();
+
+    function renderCard(card) {
+      cardList.addItem(card);
+    }
   }
 );
-function renderCard(card) {
-  cardList.addItem(card);
-}
-
 function createCard(cardData) {
-  const card = new Card(cardData, cardSelector, handlePreveiwImage);
+  const card = new Card({
+    cardData,
+    cardSelector: selectors.cardTemplate,
+    handlePreviewImage,
+    handleLikeClick: () => {
+      imagePopup.open(cardData);
+    },
+  });
 
   return card.getView();
 }
@@ -103,6 +132,7 @@ function handleEditButtonClick() {
 const userInfo = new UserInfo({
   userNameSelector: selectors.profileNameSelector,
   userTitleSelector: selectors.profileDescriptionSelector,
+  avatarSelector: selectors.avatarImage,
 });
 
 function fillProfileForm(userName, userTitle) {
@@ -112,9 +142,10 @@ function fillProfileForm(userName, userTitle) {
   });
 }
 
-function handlePreveiwImage(card) {
+function handlePreviewImage(card) {
   viewImage.open({ link: card.link, name: card.name });
 }
+function handleLikeClick(card) {}
 
 async function init() {
   Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()])

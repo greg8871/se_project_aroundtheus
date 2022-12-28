@@ -1,8 +1,6 @@
-import { ESC_KEYCODE } from "../utils/constants";
-
 export default class Popup {
   constructor(popupSelector) {
-    this._popupElement = document.querySelector(popupSelector);
+    this._popupElement = document.querySelector(popupSelector.popupSelector);
   }
 
   setEventListeners() {

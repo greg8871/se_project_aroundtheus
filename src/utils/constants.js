@@ -25,11 +25,11 @@ const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
 
-const cardSelector = "#card-template";
+//const cardSelector = "#card-template";
 
 export const validationSettings = {
   inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
+  submitButtonSelector: ".popup__submit-button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
   errorClass: "popup__error_visible",
@@ -39,15 +39,16 @@ export const selectors = {
   cardListElement: ".cards__array",
   cardTemplate: "#card-template",
   profileNameSelector: ".profile__name-title",
-  profileDescriptionSelector: "profile__description",
+  profileDescriptionSelector: ".profile__description",
   profileEditPopup: "#edit-popup",
   cardAddPopup: "#add-popup",
   profileNameElement: ".profile__name",
   profileTitleElement: ".profile__title",
   avatarPopupElement: "#avatar-popup",
   avatarButton: "#avatar-button",
-  avatarImage: ".profile__image",
+  avatarImage: ".profile__avatar",
   confirmPopup: "#confirm-popup",
+  locationsCardSelector: ".locations__cards",
 };
 
 export {
@@ -57,8 +58,8 @@ export {
   cardAddPopup,
   cardAddButton,
   cardForm,
-  profileTitleInput,
   editPopup,
+  profileTitleInput,
   profileTitleEl,
   profileDescriptionEl,
   cardAddCloseBtn,
@@ -66,5 +67,4 @@ export {
   previewPopupCaption,
   profileNameSelector,
   profileDescriptionSelector,
-  cardSelector,
 };

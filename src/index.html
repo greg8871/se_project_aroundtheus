@@ -25,7 +25,7 @@
       </header>
       <main>
         <section class="profile">
-          <div class="profile__avatar">
+          <div class="">
             <button
               class="profile__avatar-button"
               id="avatar-button"
@@ -108,9 +108,11 @@
               class="popup__input popup__input_type_description"
               name="link"
               placeholder="Image Link"
+              minlength="1"
               type="url"
               required
             />
+           
             <span class="popup__error" id="owner-url-error"></span>
             <button class="popup__submit-button " type="submit" disabled>
               Save
@@ -129,7 +131,7 @@
         <div class="popup__content popup__content_confirm">
           <form class="popup__form">
             <h3 class="popup__title popup__title_confirm">Are you sure?</h3>
-            <button class="popup__button" type="submit" >"yes"</button>
+            <button class="popup__submit-button" type="submit" >"yes"</button>
           </form>
           <button
           class="popup__close-button"
@@ -153,7 +155,7 @@
             class="popup__error popup__error_visible"
             id="avatar-link-error"
           ></span>
-          <button class="popup__button" type="submit" >"Save"</button>
+          <button class="popup__submit-button" type="submit" >"Save"</button>
             
           </button>
         </form>
@@ -169,6 +171,7 @@
           <div class="card__footer">
             <h2 class="card__title"></h2>
             <button type="button" class="card__heart-button"></button>
+            <p class = "cards__like-counter"></p> 
           </div>
           <button class="card__trash" type="button"></button>
         </div>
