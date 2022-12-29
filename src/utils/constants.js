@@ -51,7 +51,7 @@ export const selectors = {
   avatarImage: ".profile__image",
   confirmPopup: "#confirm-popup",
   locationsCardSelector: ".locations__cards",
-  previewPopup: "#preview-popup",
+  previewPopup: "#preview__popup",
 };
 
 export {

@@ -55,8 +55,8 @@ export default class FormValidator {
     this._submitButton.disabled = false;
   };
 
-  _hasInvalidInput(inputList) {
-    return !inputList.every((inputEl) => inputEl.validity.valid);
+  _hasInvalidInput() {
+    return !this._inputElements.every((inputEl) => inputEl.validity.valid);
   }
 
   _setEventListeners() {

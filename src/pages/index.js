@@ -93,15 +93,16 @@ const newAvatarPopup = new PopupWithForm({
 });
 newAvatarPopup.setEventListeners();
 const imagePopup = new PopupWithImage({
-  popupSelector: "#preview-popup",
+  popupSelector: selectors.previewPopup,
 });
 imagePopup.setEventListeners();
 
 const confirmationPopup = new PopupWithConfirmation({
   popupSelector: selectors.confirmPopup,
+  closeButtonSelector: selectors.conformationCloseButton,
 });
 confirmationPopup.setEventListeners();
-avatarButton.addEventListener("click", () => {
+document.querySelector(selectors.avatarButton).addEventListener("click", () => {
   avatarFormValidator.resetValidation();
   newAvatarPopup.open();
 });
@@ -114,7 +115,7 @@ profileEditButton.addEventListener("click", () => {
 });
 cardAddButton.addEventListener("click", () => {
   addFormValidator.resetValidation();
-  newCardPopup.open();
+  addCardPopup.open();
 });
 
 Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()]).then(
@@ -166,8 +167,8 @@ function handleEditButtonClick() {
 }
 
 const userInfo = new UserInfo({
-  userNameSelector: selectors.profileNameSelector,
-  userTitleSelector: selectors.profileDescriptionSelector,
+  userNameSelector: selectors.profileNameElement,
+  userTitleSelector: selectors.profileNameSelector,
   avatarSelector: selectors.avatarImage,
 });
 
@@ -183,7 +184,7 @@ function handlePreviewImage(card) {
 }
 //function handleLikeClick(card) {}
 
-async function init() {
+/* async function init() {
   Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()])
     .then(([userData, cards]) => {
       profileInfoElement.setUserInfo({
@@ -195,8 +196,8 @@ async function init() {
       cardSection.renderItems(cards);
     })
     .catch((err) => console.log(err));
-}
-init();
+} */
+//init();
 
 //cardAddButton.addEventListener("click", handleAddCardClick);
 //profileEditButton.addEventListener("click", handleEditButtonClick);
