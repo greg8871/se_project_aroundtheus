@@ -49,6 +49,14 @@
   background-repeat: no-repeat;
   background-size: 21px 18px;
 }
+.cards__like-counter {
+  text-align: center;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000;
+  font-weight: normal;
+  margin: 3px 0 17px 0;
+}
 
 .card__heart-button_active {
   z-index: 2;

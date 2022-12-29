@@ -4,14 +4,16 @@ export const profileNameInput = document.querySelector(
   ".popup__input_type_name"
 );
 
-const profileEditButton = document.querySelector(".profile__edit-button");
+export const profileEditButton = document.querySelector(
+  ".profile__edit-button"
+);
 const editPopup = document.querySelector("#edit-popup");
 const profileEditForm = document.querySelector("#edit-profile-form");
 const profileTitleEl = document.querySelector(".profile__name-title");
 const profileDescriptionEl = document.querySelector(".profile__description");
 const previewPopup = document.querySelector("#preview__popup");
 const cardAddPopup = document.querySelector("#add-popup");
-const cardAddButton = document.querySelector("#add-button");
+export const cardAddButton = document.querySelector("#add-button");
 const cardAddCloseBtn = cardAddPopup.querySelector(".popup__close");
 const popupImage = previewPopup.querySelector(".popup__image");
 const previewPopupCaption = previewPopup.querySelector(
@@ -46,17 +48,16 @@ export const selectors = {
   profileTitleElement: ".profile__title",
   avatarPopupElement: "#avatar-popup",
   avatarButton: "#avatar-button",
-  avatarImage: ".profile__avatar",
+  avatarImage: ".profile__image",
   confirmPopup: "#confirm-popup",
   locationsCardSelector: ".locations__cards",
+  previewPopup: "#preview-popup",
 };
 
 export {
-  profileEditButton,
   profileEditForm,
   previewPopup,
   cardAddPopup,
-  cardAddButton,
   cardForm,
   editPopup,
   profileTitleInput,

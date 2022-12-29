@@ -1,8 +1,9 @@
+import FormValidator from "../components/FormValidator.js";
 import "./index.css";
 import Card from "../components/Card.js";
-import FormValidator from "../components/FormValidator";
-import PopupWithForm from "../components/PopupWithForm";
-import PopupWithImage from "../components/PopupWithImage";
+
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
@@ -10,9 +11,11 @@ import PopupWithConfirmation from "../components/PopupWithConfirmation";
 import {
   cardSelector,
   selectors,
+  validationSettings,
   cardForm,
   editPopup,
-  validationSettings,
+  cardAddButton,
+  profileEditButton,
 } from "../utils/constants.js";
 const config = {
   inputSelector: ".popup__input",
@@ -73,13 +76,46 @@ const addCardPopup = new PopupWithForm({
   },
 });
 addCardPopup.setEventListeners();
-const viewImage = new PopupWithImage("#preview__popup");
-viewImage.setEventListeners();
+
+const newAvatarPopup = new PopupWithForm({
+  popupSelector: selectors.avatarPopupElement,
+  handleFormSubmit: (data) => {
+    newAvatarPopup.setSubmitText(true);
+    Api.editAvatar(data)
+      .then((data) => {
+        userInfo.setUserInfo(data);
+        newAvatarPopup.close();
+      })
+      .catch((error) => console.log(`An error has occured ${error}`))
+      .finally(() => newAvatarPopup.setSubmitText(false));
+  },
+  resetOnClose: true,
+});
+newAvatarPopup.setEventListeners();
+const imagePopup = new PopupWithImage({
+  popupSelector: "#preview-popup",
+});
+imagePopup.setEventListeners();
 
 const confirmationPopup = new PopupWithConfirmation({
   popupSelector: selectors.confirmPopup,
 });
 confirmationPopup.setEventListeners();
+avatarButton.addEventListener("click", () => {
+  avatarFormValidator.resetValidation();
+  newAvatarPopup.open();
+});
+profileEditButton.addEventListener("click", () => {
+  const { userName, userTitle } = userInfo.getUserInfo();
+  profileNameInput.value = userName;
+  profileTitleInput.value = userTitle;
+  addFormValidator.resetValidation();
+  editProfilePopup.open();
+});
+cardAddButton.addEventListener("click", () => {
+  addFormValidator.resetValidation();
+  newCardPopup.open();
+});
 
 Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()]).then(
   ([data, initialCards]) => {
@@ -145,7 +181,7 @@ function fillProfileForm(userName, userTitle) {
 function handlePreviewImage(card) {
   viewImage.open({ link: card.link, name: card.name });
 }
-function handleLikeClick(card) {}
+//function handleLikeClick(card) {}
 
 async function init() {
   Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()])

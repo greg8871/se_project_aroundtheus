@@ -25,6 +25,9 @@
   border-radius: 10px;
   overflow: hidden;
 }
+.popup__input_type_error:invalid{
+  border-bottom: 1px solid red;
+}
 
 .popup__content {
   width: 430px;
@@ -131,6 +134,14 @@
   font-size: 18px;
   display: block;
   
+}
+.popup__error_visible {
+  font-size: 12px;
+  line-height: 15px;
+  color: #ff0000;
+  position: relative;
+  max-width: fit-content;
+  max-height: fit-content;
 }
 
 
