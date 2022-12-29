@@ -6,10 +6,10 @@ export default class UserInfo {
   }
   getUserInfo() {
     return {
-      name: this._userName.textContent,
-      job: this._userTitle.textContent,
+      userName: this._userName.textContent,
+      userTitle: this._userTitle.textContent,
       avatar: this._avatarElement.style.backgroundImage,
-      _id: this._ownerId,
+      // _id: this._ownerId,
     };
   }
   setUserInfo({ name, about, avatar, id }) {

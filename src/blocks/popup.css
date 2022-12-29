@@ -90,30 +90,7 @@
   line-height: 15px;
   color: white;
 }
-.profile__image-container {
-  position: relative;
-  display: inline-block;
-  margin-right: 20px;
-}
 
-.profile__image-container:hover .profile__avatar-button {
-  visibility: visible;
-}
-.profile__avatar-button {
-  background-image: url(../images/pencil.svg);
-  position: absolute;
-  background-color: transparent;
-  width: 120px;
-  height: 120px;
-  top: 0;
-  left: 0;
-  border: none;
-  background-repeat: no-repeat;
-  background-position: center;
-  border-radius: 50%;
-  visibility: hidden;
-  z-index: 1;
-}
 
 .popup__input {
   border-top: none;

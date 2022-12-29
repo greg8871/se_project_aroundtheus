@@ -16,6 +16,8 @@ import {
   editPopup,
   cardAddButton,
   profileEditButton,
+  profileNameInput,
+  profileTitleInput,
 } from "../utils/constants.js";
 const config = {
   inputSelector: ".popup__input",
@@ -45,7 +47,6 @@ avatarFormValidator.enableValidation();
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
   handleFormSubmit: (evt, data) => {
-    evt.preventDefault();
     editProfilePopup.renderFormLoading(true);
     cardsApi
       .editProfile({
@@ -65,7 +66,7 @@ const editProfilePopup = new PopupWithForm({
 editProfilePopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm({
-  popupSelector: selectors.profileEditPopup,
+  popupSelector: selectors.cardAddPopup,
   handleFormSubmit: (data) => {
     const card = createCard({
       name: data.title,
@@ -111,6 +112,7 @@ profileEditButton.addEventListener("click", () => {
   profileNameInput.value = userName;
   profileTitleInput.value = userTitle;
   addFormValidator.resetValidation();
+  fillProfileForm(userName, userTitle);
   editProfilePopup.open();
 });
 cardAddButton.addEventListener("click", () => {
