@@ -154,7 +154,7 @@ function createCard(cardData) {
 
   return card.getView();
 }
-function handleAddCardClick() {
+/* function handleAddCardClick() {
   cardFormValidator.resetValidation();
   addCardPopup.open();
 }
@@ -164,11 +164,11 @@ function handleEditButtonClick() {
   fillProfileForm(name, job);
   profieFormValidator.resetValidation();
   editProfilePopup.open();
-}
+} */
 
 const userInfo = new UserInfo({
-  userNameSelector: selectors.profileNameElement,
-  userTitleSelector: selectors.profileNameSelector,
+  userNameSelector: selectors.profileNameSelector,
+  userTitleSelector: selectors.profileDescriptionSelector,
   avatarSelector: selectors.avatarImage,
 });
 

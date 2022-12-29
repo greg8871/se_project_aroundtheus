@@ -26,27 +26,30 @@
       <main>
         <section class="profile">
           <div class="">
-            <button
+            <div class="profile__image-container" >
+
+              <img
+              src="<%=require('./images/jacques-cousteau.jpg')%>"
+              class="profile__image"
+              alt="profile image of JacquesCousteau"
+              />
+              <button
               class="profile__avatar-button"
               id="avatar-button"
-              type="button">edit</button>
-          <img
-            src="<%=require('./images/jacques-cousteau.jpg')%>"
-            class="profile__image"
-            alt="profile image of JacquesCousteau"
-          />
+              type="button"></button>
+            </div>
           <div class="profile__content">
             <div class="profile__name">
               <h1 class="profile__name-title">Jacques Cousteau</h1>
-              <button class="profile__edit-button" type="button">help</button>
+               <button class="profile__edit-button" type="button"></button> 
             </div>
             <p class="profile__description">Explorer</p>
           </div>
-          <button
+           <button
             class="profile__add-button"
             id="add-button"
             type="button"
-          ></button>
+          ></button> 
         </section>
 
         <section class="locations">
@@ -58,7 +61,7 @@
       </footer>
       <div class="popup" id="edit-popup">
         <div class="popup__content">
-          <button class="popup__close" type="button"></button>
+          <button class="popup__close" type="button"></button> 
           <h3 class="popup__title">Edit-profile</h3>
           <form class="popup__form" id="edit-profile-form">
             <input
@@ -85,9 +88,9 @@
             <span class="popup__error" id="owner-description-error"></span>
             <button class="popup__submit-button" type="submit">Save</button>
           </form>
-          <button
+          <!-- <button
           class="popup__close-button"
-          type="button">close</button>
+          type="button">close</button> -->
          </div>
       </div>
       <div class="popup" id="add-popup">
@@ -122,13 +125,13 @@
             </button>
           </form>
           <button
-          class="popup__close-button"
-          type="button">close</button>
+          class="popup__close"
+          type="button"></button>
         </div>
       </div>
       <div class="popup" id="preview__popup">
         <div class="popup__content popup__content_type_image">
-          <button class="popup__close-button" type="button">close</button>
+          <button class="popup__close" type="button">close</button>
           <img src="#" alt="#" class="popup__image" />
           <p class="popup__preview-caption"></p>
         </div>
@@ -140,8 +143,8 @@
             <button class="popup__submit-button" type="submit" >"yes"</button>
           </form>
           <button
-          class="popup__close-button"
-          type="button">close</button>
+          class="popup__close"
+          type="button"></button>
       </div>
     </div>
 
@@ -166,8 +169,8 @@
           </button>
         </form>
         <button
-          class="popup__close-button"
-          type="button">close</button>
+          class="popup__close"
+          type="button"></button>
       </div>
     </div>
 
