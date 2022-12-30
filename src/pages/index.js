@@ -67,7 +67,8 @@ editProfilePopup.setEventListeners();
 
 const addCardPopup = new PopupWithForm({
   popupSelector: selectors.cardAddPopup,
-  handleFormSubmit: (data) => {
+  handleFormSubmit: (data, evt) => {
+    evt.preventDefault();
     const card = createCard({
       name: data.title,
       link: data.link,
@@ -182,9 +183,9 @@ function fillProfileForm(userName, userTitle) {
 }
 
 function handlePreviewImage(card) {
-  viewImage.open({ link: card.link, name: card.name });
+  imagePopup.open({ link: card.link, name: card.name });
 }
-//function handleLikeClick(card) {}
+function handleLikeClick(card) {}
 
 /* async function init() {
   Promise.all([cardsApi.getUserInfo(), cardsApi.getInitialCards()])

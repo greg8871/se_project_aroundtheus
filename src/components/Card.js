@@ -13,9 +13,21 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
     this._likes = cardData.likes;
-    this._cardId = cardData._id;
+    this._Id = cardData._id;
     this._userId = cardData.userId;
     this._ownerId = cardData.owner._id;
+  }
+  getId() {
+    return this._id;
+  }
+  getLikeList() {
+    return this._likesList;
+  }
+  _getTemplate() {
+    return document
+      .querySelector(this._cardSelector)
+      .content.querySelector(".card")
+      .cloneNode(true);
   }
 
   _setEventListeners() {

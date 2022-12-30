@@ -9,13 +9,13 @@ export default class UserInfo {
       userName: this._userName.textContent,
       userTitle: this._userTitle.textContent,
       avatar: this._avatarElement.style.backgroundImage,
-      // _id: this._ownerId,
+      _id: this._ownerId,
     };
   }
-  setUserInfo({ name, about, avatar, id }) {
+  setUserInfo({ name, about, avatar, _id }) {
     this._userName.textContent = name;
     this._userTitle.textContent = about;
     this._avatarElement.style.backgroundImage = `url(${avatar})`;
-    this._ownerId = id;
+    this._ownerId = _id;
   }
 }
