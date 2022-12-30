@@ -15,7 +15,7 @@ export default class Card {
     this._likes = cardData.likes;
     this._Id = cardData._id;
     this._userId = cardData.userId;
-    this._ownerId = cardData.owner._id;
+    // this._ownerId = cardData.owner._id;
   }
   getId() {
     return this._id;

@@ -47,10 +47,11 @@ avatarFormValidator.enableValidation();
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
   handleFormSubmit: (evt, data) => {
+    evt.preventDefault();
     editProfilePopup.renderFormLoading(true);
     cardsApi
-      .editProfile({
-        name: data.name,
+      .editUserInfo({
+        name: data.title,
         about: data.description,
       })
       .then((res) => {
@@ -68,7 +69,7 @@ editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm({
   popupSelector: selectors.cardAddPopup,
   handleFormSubmit: (data, evt) => {
-    evt.preventDefault();
+    //evt.preventDefault();
     const card = createCard({
       name: data.title,
       link: data.link,

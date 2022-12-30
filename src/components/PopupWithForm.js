@@ -13,6 +13,13 @@ export default class PopupWithForm extends Popup {
       this._formEl.querySelectorAll(".popup__form")
     );
   }
+  renderFormLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = "Saving...";
+    } else {
+      this._submitButton.textContent = "Save";
+    }
+  }
   _getInputValues() {
     const data = {};
     this._formInputList.forEach((input) => {
@@ -32,9 +39,10 @@ export default class PopupWithForm extends Popup {
   }
   setEventListeners() {
     this._formEl.addEventListener("submit", (evt) => {
-      evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
+      /* this._( */
+      this._handleFormSubmit(evt, this._getInputValues());
     });
+
     super.setEventListeners();
   }
   close() {
