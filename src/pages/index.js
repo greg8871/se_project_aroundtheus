@@ -43,7 +43,11 @@ const avatarFormValidator = new FormValidator(
   avatarFormElement
 );
 avatarFormValidator.enableValidation();
-
+const userInfo = new UserInfo({
+  userNameSelector: selectors.profileNameSelector,
+  userTitleSelector: selectors.profileDescriptionSelector,
+  avatarSelector: selectors.avatarImage,
+});
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
   handleFormSubmit: (evt, data) => {
@@ -169,12 +173,6 @@ function handleEditButtonClick() {
   profieFormValidator.resetValidation();
   editProfilePopup.open();
 } */
-
-const userInfo = new UserInfo({
-  userNameSelector: selectors.profileNameSelector,
-  userTitleSelector: selectors.profileDescriptionSelector,
-  avatarSelector: selectors.avatarImage,
-});
 
 function fillProfileForm(userName, userTitle) {
   editProfilePopup.setInputValues({
