@@ -27,8 +27,6 @@ const profileTitleInput = profileEditForm.querySelector(
   ".popup__input_type_name"
 );
 
-//const cardSelector = "#card-template";
-
 export const validationSettings = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__submit-button",
