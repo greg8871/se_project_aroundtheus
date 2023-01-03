@@ -57,14 +57,14 @@
   font-weight: normal;
   margin: 3px 0 17px 0;
 }
-/* cards__heart-button_active {
-  background-image: url(../../../../images/liked.svg);
-} */
+ .cards__heart-button_active {
+  background-image: url(../images/like-active.svg);
+} 
 
-.card__heart-button_active {
+/* /* .card__heart-button_active {
   z-index: 2;
-  background: transparent url(../images/Union.png) no-repeat center;
-}
+  background: transparent url(../images/Union.png) no-repeat center; 
+} */
 .card__heart-button:hover {
   opacity: 0.5;
   cursor: pointer;

@@ -22,13 +22,13 @@ export default class Api {
     }).then(this._handleServerResponse);
   }
 
-  async editUserInfo(data) {
+  editUserInfo(data) {
     return fetch(this._baseUrl + "/users/me", {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
-        about: data.about,
+        name: data.title,
+        about: data.description,
       }),
     }).then(this._handleServerResponse);
   }
@@ -48,7 +48,7 @@ export default class Api {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
-        name: data.name,
+        name: data.title,
         link: data.link,
       }),
     }).then(this._handleServerResponse);
