@@ -5,6 +5,7 @@ export default class Card {
     handlePreviewImage,
     handleLikeClick,
     handleDeleteClick,
+    handleCardClick,
   }) {
     this._name = data.name;
     this._link = data.link;
@@ -12,6 +13,7 @@ export default class Card {
     this._handlePreviewImage = handlePreviewImage;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._handleCardClick = handleCardClick;
     this._likes = data.likes;
     this._cardId = data._id;
     this._userId = data.userId;
@@ -32,7 +34,7 @@ export default class Card {
   _setEventListeners() {
     this._element;
     this._imageEl.addEventListener("click", () =>
-      this._handlePreviewImage({
+      this._handleCardClick({
         link: this._link,
         name: this._name,
       })
