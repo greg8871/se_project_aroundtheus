@@ -17,6 +17,7 @@ export default class Card {
     this._likes = data.likes;
     this._cardId = data._id;
     this._userId = data.userId;
+    this._ownerId = data.owner._id;
   }
   getId() {
     return this._id;
@@ -60,10 +61,10 @@ export default class Card {
     }
   };
 
-  _handleDelete = () => {
+  deleteCard() {
     this._element.remove();
     this._element = null;
-  };
+  }
 
   _getTemplate() {
     return document
@@ -82,6 +83,8 @@ export default class Card {
   }
 
   _removeDeleteButton() {
+    console.log(this._userId, this._ownerId);
+    console.log(this._userId !== this._ownerId);
     if (this._userId !== this._ownerId) {
       this._trashBtn.remove();
     }

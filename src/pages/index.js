@@ -73,8 +73,8 @@ const addCardPopup = new PopupWithForm({
     addCardPopup.setSubmitText(true, "Creating...");
     api
       .postCard(cardData)
-      .then((data) => {
-        cardSection.addItem(renderCard(data, userId));
+      .then((cardData) => {
+        cardSection.addItem(renderCard(cardData, userId));
         addCardPopup.close();
       })
       .catch((error) => {
@@ -164,7 +164,8 @@ function renderCard(cardData, userId) {
         api
           .deleteCard(card._cardId)
           .then(() => {
-            card.deleteCard();
+            console.log(card);
+            card.deleteCard;
             confirmationPopup.close();
           })
           .catch((error) => {
@@ -185,22 +186,16 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
       about: data.about,
       avatar: data.avatar,
     });
-    const cardList = new Section(
+    cardSection = new Section(
       {
         items: cards,
         renderer: (cardData) => {
-          const card = renderCard(cardData, userId);
-
-          cardList.addItem(card);
+          cardSection.addItem(renderCard(cardData, userId));
         },
       },
-      selectors.locationsCardSelector
+      selectors.cardListElement
     );
-    cardList.renderItems();
-
-    /*  function renderCard(card) {
-      cardList.addItem(card);
-    } */
+    cardSection.renderItems();
   }
 );
 function fillProfileForm(userName, userTitle) {
