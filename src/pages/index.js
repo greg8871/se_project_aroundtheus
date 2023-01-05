@@ -164,8 +164,7 @@ function renderCard(cardData, userId) {
         api
           .deleteCard(card._cardId)
           .then(() => {
-            console.log(card);
-            card.deleteCard;
+            card.deleteCard();
             confirmationPopup.close();
           })
           .catch((error) => {
@@ -193,7 +192,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
           cardSection.addItem(renderCard(cardData, userId));
         },
       },
-      selectors.cardListElement
+      selectors.locationsCardSelector
     );
     cardSection.renderItems();
   }
@@ -205,8 +204,8 @@ function fillProfileForm(userName, userTitle) {
   });
 }
 
-function handlePreviewImage(card) {
+/* function handlePreviewImage(card) {
   imagePopup.open({ link: card.link, name: card.name });
-}
+} */
 
 cardFormValidator.enableValidation();
