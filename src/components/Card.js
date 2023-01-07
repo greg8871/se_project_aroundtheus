@@ -51,12 +51,12 @@ export default class Card {
     );
   }
 
-  _handleLikeButton = () => {
+  _updateLikeButtonState = () => {
     if (this.isLiked()) {
-      this._element;
+      /* this._element; */
       this._likeBtn.classList.add("cards__heart-button_active");
     } else {
-      this._element;
+      /* this._element; */
       this._likeBtn.classList.remove("cards__heart-button_active");
     }
   };
@@ -75,7 +75,7 @@ export default class Card {
   showLikes(data) {
     this._likes = data || [];
     this._likeCounter.textContent = this._likes.length;
-    this._handleLikeButton();
+    this._updateLikeButtonState();
   }
 
   isLiked() {

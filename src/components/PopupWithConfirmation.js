@@ -16,7 +16,7 @@ export default class PopupWithConfirmation extends Popup {
     }
   }
 
-  confirmDelete(confirmation) {
+  setConfirmDelete(confirmation) {
     this._handleFormSubmit = confirmation;
   }
 

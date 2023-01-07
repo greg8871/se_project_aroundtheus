@@ -34,8 +34,8 @@ let cardSection = null;
 let userId = null;
 
 const cardFormValidator = new FormValidator(config, cardForm);
-const addFormValidator = new FormValidator(config, editPopup);
-addFormValidator.enableValidation();
+const profileFormValidator = new FormValidator(config, editPopup);
+profileFormValidator.enableValidation();
 
 const avatarFormElement = document.querySelector("#avatar-form");
 const avatarFormValidator = new FormValidator(
@@ -86,22 +86,22 @@ const addCardPopup = new PopupWithForm({
 });
 addCardPopup.setEventListeners();
 
-const newAvatarPopup = new PopupWithForm({
+const avatarPopup = new PopupWithForm({
   popupSelector: selectors.avatarPopupElement,
   handleFormSubmit: (data) => {
-    newAvatarPopup.setSubmitText(true);
+    avatarPopup.setSubmitText(true);
     api
       .editAvatar(data)
       .then((data) => {
         userInfo.setUserInfo(data);
-        newAvatarPopup.close();
+        avatarPopup.close();
       })
       .catch((error) => console.log(`An error has occured ${error}`))
-      .finally(() => newAvatarPopup.setSubmitText(false));
+      .finally(() => avatarPopup.setSubmitText(false));
   },
   resetOnClose: true,
 });
-newAvatarPopup.setEventListeners();
+avatarPopup.setEventListeners();
 const imagePopup = new PopupWithImage({
   popupSelector: selectors.previewPopup,
 });
@@ -114,18 +114,18 @@ const confirmationPopup = new PopupWithConfirmation({
 confirmationPopup.setEventListeners();
 document.querySelector(selectors.avatarButton).addEventListener("click", () => {
   avatarFormValidator.resetValidation();
-  newAvatarPopup.open();
+  avatarPopup.open();
 });
 profileEditButton.addEventListener("click", () => {
   const { userName, userTitle } = userInfo.getUserInfo();
   profileNameInput.value = userName;
   profileTitleInput.value = userTitle;
-  addFormValidator.resetValidation();
+  /*  profileFormValidator.resetValidation(); */
   fillProfileForm(userName, userTitle);
   editProfilePopup.open();
 });
 cardAddButton.addEventListener("click", () => {
-  addFormValidator.resetValidation();
+  profileFormValidator.resetValidation();
   addCardPopup.open();
 });
 
@@ -159,7 +159,7 @@ function renderCard(cardData, userId) {
     },
 
     handleDeleteClick: (card) => {
-      confirmationPopup.confirmDelete(() => {
+      confirmationPopup.setConfirmDelete(() => {
         confirmationPopup.setSubmitText(true, "Deleting...");
         api
           .deleteCard(card._cardId)

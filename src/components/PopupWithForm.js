@@ -17,7 +17,7 @@ export default class PopupWithForm extends Popup {
     if (isLoading) {
       this._submitButton.textContent = "Saving...";
     } else {
-      this._submitButton.textContent = "Save";
+      this._submitButtonText.textContent = "Save";
     }
   }
   _getInputValues() {
@@ -31,9 +31,9 @@ export default class PopupWithForm extends Popup {
 
   setInputValues(data) {
     this._inputList.forEach((input) => {
-      if (data[input.name] != null) {
+      /*   if (data[input.name] != null) {
         input.value = data[input.name];
-      }
+      } */
     });
   }
   setEventListeners() {
@@ -50,7 +50,7 @@ export default class PopupWithForm extends Popup {
     }
     super.close();
   }
-  setSubmitText(submit, submitText = "Saving...") {
+  setSubmitText(submit, submitText /* = "Saving..." */) {
     if (submit) {
       this._submitButton.textContent = submitText;
     } else {
