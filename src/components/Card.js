@@ -42,7 +42,6 @@ export default class Card {
     );
     //this._trashBtn.addEventListener("click", () => this._handleDelete());
 
-    this._element;
     this._likeBtn.addEventListener("click", () => this._handleLikeClick(this));
 
     this._element;
@@ -53,10 +52,8 @@ export default class Card {
 
   _updateLikeButtonState = () => {
     if (this.isLiked()) {
-      /* this._element; */
       this._likeBtn.classList.add("cards__heart-button_active");
     } else {
-      /* this._element; */
       this._likeBtn.classList.remove("cards__heart-button_active");
     }
   };
@@ -72,12 +69,14 @@ export default class Card {
       .content.querySelector(".card")
       .cloneNode(true);
   }
-  showLikes(data) {
-    this._likes = data || [];
+  _renderLikes() {
     this._likeCounter.textContent = this._likes.length;
     this._updateLikeButtonState();
   }
-
+  updateLikes(likes) {
+    this._likes = likes;
+    this._renderLikes();
+  }
   isLiked() {
     return this._likes.some((item) => item._id === this._userId);
   }
@@ -100,10 +99,9 @@ export default class Card {
     this._likeBtn = this._element.querySelector(".card__heart-button");
     this._trashBtn = this._element.querySelector(".card__trash");
     this._likeCounter = this._element.querySelector(".cards__like-counter");
-    // this._setEventListeners();
-    this.showLikes(this._likes);
     this._setEventListeners();
     this._removeDeleteButton();
+    this._renderLikes();
     return this._element;
   }
 }

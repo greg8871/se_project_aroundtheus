@@ -51,7 +51,6 @@ const userInfo = new UserInfo({
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#edit-popup",
   handleFormSubmit: (data) => {
-    editProfilePopup.renderFormLoading(true);
     api
       .editUserInfo(data)
       .then((data) => {
@@ -93,7 +92,7 @@ const avatarPopup = new PopupWithForm({
     api
       .editAvatar(data)
       .then((data) => {
-        userInfo.setUserInfo(data);
+        userInfo.setAvatar(data.avatar);
         avatarPopup.close();
       })
       .catch((error) => console.log(`An error has occured ${error}`))
@@ -120,8 +119,6 @@ profileEditButton.addEventListener("click", () => {
   const { userName, userTitle } = userInfo.getUserInfo();
   profileNameInput.value = userName;
   profileTitleInput.value = userTitle;
-  /*  profileFormValidator.resetValidation(); */
-  fillProfileForm(userName, userTitle);
   editProfilePopup.open();
 });
 cardAddButton.addEventListener("click", () => {
@@ -141,7 +138,7 @@ function renderCard(cardData, userId) {
         api
           .removeLikes(data._cardId)
           .then((response) => {
-            card.showLikes(response.likes);
+            card.updateLikes(response.likes);
           })
           .catch((error) => {
             console.log(`An error has occured ${error}`);
@@ -150,7 +147,7 @@ function renderCard(cardData, userId) {
         api
           .addLikes(data._cardId)
           .then((response) => {
-            card.showLikes(response.likes);
+            card.updateLikes(response.likes);
           })
           .catch((error) => {
             console.log(`An error has occured ${error}`);
@@ -183,7 +180,6 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
     userInfo.setUserInfo({
       name: data.name,
       about: data.about,
-      avatar: data.avatar,
     });
     cardSection = new Section(
       {
@@ -203,9 +199,5 @@ function fillProfileForm(userName, userTitle) {
     description: userTitle,
   });
 }
-
-/* function handlePreviewImage(card) {
-  imagePopup.open({ link: card.link, name: card.name });
-} */
 
 cardFormValidator.enableValidation();
