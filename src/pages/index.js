@@ -181,6 +181,7 @@ Promise.all([api.getUserInfo(), api.getInitialCards()]).then(
       name: data.name,
       about: data.about,
     });
+    userInfo.setAvatar(data.avatar);
     cardSection = new Section(
       {
         items: cards,
