@@ -1,8 +1,6 @@
 export const avatarButton = document.querySelector("#avatar-button");
 
-export const profileNameInput = document.querySelector(
-  ".popup__input_type_name"
-);
+export const profileNameInput = document.querySelector("#owner-name");
 
 export const profileEditButton = document.querySelector(
   ".profile__edit-button"
@@ -23,9 +21,7 @@ const cardForm = document.querySelector("#add-card-form");
 const profileNameSelector = ".profile__name-title";
 const profileDescriptionSelector = ".profile__description";
 
-const profileTitleInput = profileEditForm.querySelector(
-  ".popup__input_type_name"
-);
+const profileTitleInput = profileEditForm.querySelector("#owner-description");
 
 export const validationSettings = {
   inputSelector: ".popup__input",
