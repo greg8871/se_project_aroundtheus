@@ -1,0 +1,33 @@
+.header {
+  box-sizing: border-box;
+  padding: 45px 0 0 0;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+
+  background-clip: padding-box;
+  max-width: 880px;
+  margin: 0 auto;
+  min-height: 120px;
+}
+.header__link {
+  margin: 0px 0px 41px;
+  width: 173px;
+}
+
+@media (min-width: 760px) and (max-width: 1150px) {
+  .header {
+    padding: 36px 95px 0 0;
+  }
+}
+@media screen and (max-width: 759px) {
+  .header {
+    padding: 28px 19px 0 27px;
+    min-height: 84px;
+  }
+
+  .header__logo {
+    max-width: 126px;
+    max-height: 24px;
+
+    margin-bottom: 32px;
+  }
+}
